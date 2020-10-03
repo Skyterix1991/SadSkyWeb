@@ -3,19 +3,3 @@
 * {
   font-family: 'Roboto', sans-serif;
 }
-
-.custom-select:focus {
-  box-shadow: none !important;
-}
-
-.btn:focus {
-  box-shadow: none !important;
-}
-
-a:focus {
-  box-shadow: none !important;
-}
-
-.form-control:focus {
-  box-shadow: none !important;
-}

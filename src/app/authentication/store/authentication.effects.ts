@@ -45,9 +45,9 @@ export class AuthenticationEffects {
         catchError(error => {
           switch (error.status) {
             case 403:
-              return of(new AuthenticationFailed('Invalid login details.'));
+              return of(new AuthenticationFailed('Podane hasło jest nieprawidłowe.'));
             default:
-              return of(new AuthenticationFailed('Something went wrong. Try again later.'));
+              return of(new AuthenticationFailed('Coś poszło nie tak. Spróbuj ponownie później.'));
           }
         })
       );
@@ -65,7 +65,7 @@ export class AuthenticationEffects {
           return new UserFetchSuccess(response);
         }),
         catchError(__ => {
-          return of(new AuthenticationFailed('User data could not be fetched. Try again later.'));
+          return of(new AuthenticationFailed('Nie udało się pobrać informacji o użytkowniku. Spróbuj ponownie później.'));
         })
       );
     })
@@ -80,7 +80,7 @@ export class AuthenticationEffects {
           return new UserFetchSuccess(response);
         }),
         catchError(__ => {
-          return of(new AuthenticationFailed('User data could not be fetched. Try again later.'));
+          return of(new AuthenticationFailed('Nie udało się pobrać informacji o użytkowniku. Spróbuj ponownie później.'));
         })
       );
     })
