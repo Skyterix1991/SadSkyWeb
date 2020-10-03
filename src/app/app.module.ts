@@ -1,9 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {AppComponent} from './app.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {AppRoutingModule} from './app-routing.module';
+import {AuthenticationModule} from './authentication/authentication.module';
+import {AppStoreModule} from './app-store.module';
 
 @NgModule({
   declarations: [
@@ -11,8 +13,10 @@ import {AppRoutingModule} from './app-routing.module';
   ],
   imports: [
     BrowserModule,
+    FontAwesomeModule,
+    AuthenticationModule,
     AppRoutingModule,
-    FontAwesomeModule
+    AppStoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
