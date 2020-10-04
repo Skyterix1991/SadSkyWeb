@@ -2,7 +2,7 @@ export class DateConstants {
 
   static getYears(): number[] {
     const currentYear = new Date().getFullYear() - 16; // Allow registration form 16 years old
-    const minYear = currentYear - 100; // Allow registration to 100 years old
+    const minYear = currentYear - 84; // Allow registration to 100 years old
 
     const yearList = [];
 
