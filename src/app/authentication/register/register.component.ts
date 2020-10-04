@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   onClose(): void {
-    this.authenticationService.loginModalCloseEvent.emit();
+    this.authenticationService.registerModalCloseEvent.emit();
   }
 
   onSubmit(): void {
