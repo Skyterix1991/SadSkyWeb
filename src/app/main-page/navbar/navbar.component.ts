@@ -1,5 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
 import {AuthenticationService} from '../../authentication/authentication.service';
+import {faBars} from '@fortawesome/free-solid-svg-icons/faBars';
+import {faTimes} from '@fortawesome/free-solid-svg-icons/faTimes';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +10,14 @@ import {AuthenticationService} from '../../authentication/authentication.service
 })
 export class NavbarComponent {
 
-  constructor(private authenticationService: AuthenticationService) {
+  menuToggleIcon = faBars;
+
+  private isMenuOpened = true;
+
+  @ViewChild('menuRef') menuRef: ElementRef;
+
+  constructor(private authenticationService: AuthenticationService,
+              private renderer: Renderer2) {
   }
 
   onLoginClicked(): void {
@@ -17,5 +26,17 @@ export class NavbarComponent {
 
   onRegisterClicked(): void {
     this.authenticationService.registerModalOpenEvent.emit();
+  }
+
+  onMenuToggle(): void {
+    if (this.isMenuOpened) {
+      this.menuToggleIcon = faTimes;
+      this.renderer.setStyle(this.menuRef.nativeElement, 'display', 'block');
+    } else {
+      this.menuToggleIcon = faBars;
+      this.renderer.setStyle(this.menuRef.nativeElement, 'display', 'none');
+    }
+
+    this.isMenuOpened = !this.isMenuOpened;
   }
 }

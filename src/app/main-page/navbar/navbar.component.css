@@ -3,3 +3,8 @@
   font-weight: 300;
   text-transform: capitalize;
 }
+
+.navbar-toggler {
+  outline: none;
+  border: none;
+}
