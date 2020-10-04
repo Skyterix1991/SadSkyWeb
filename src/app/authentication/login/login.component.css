@@ -1,4 +1,4 @@
-.login-modal {
+.register-modal {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -6,11 +6,11 @@
   z-index: 1050;
 }
 
-.login-modal .content .header {
+.register-modal .content .header {
   min-height: 56px;
 }
 
-.login-modal .content .body .icon {
+.register-modal .content .body .icon {
   margin-top: -30px;
   border: 2px solid #0275d8;
   line-height: 120px;

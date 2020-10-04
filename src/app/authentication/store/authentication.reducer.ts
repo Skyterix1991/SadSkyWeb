@@ -6,6 +6,7 @@ import {
   LOGIN_START,
   LOGIN_SUCCESS,
   LOGOUT,
+  REGISTER_START,
   RESET_AUTHENTICATION,
   USER_FETCH_SUCCESS
 } from './authentication.actions';
@@ -28,6 +29,12 @@ const initialState: State = {
 
 export function authenticationReducer(state = initialState, action: AuthenticationActions): State {
   switch (action.type) {
+    case REGISTER_START:
+      return {
+        ...state,
+        isAuthenticating: true,
+        errorMessage: null
+      };
     case LOGIN_START:
       return {
         ...state,

@@ -13,17 +13,46 @@ import {
   LoginStart,
   LoginSuccess,
   LOGOUT,
+  REGISTER_START,
+  RegisterStart,
   ResetAuthentication,
   UserFetchSuccess
 } from './authentication.actions';
 import {catchError, map, switchMap, tap} from 'rxjs/operators';
-import {GET_USER_URL, LOGIN_URL} from '../../shared/config/api.constants';
+import {GET_USER_URL, LOGIN_URL, REGISTER_URL} from '../../shared/config/api.constants';
 import {of} from 'rxjs';
 import {UserAuth} from '../../shared/model/user-auth';
 import {User} from '../../shared/model/user.model';
 
 @Injectable()
 export class AuthenticationEffects {
+
+  @Effect()
+  registerStart = this.actions$.pipe(
+    ofType(REGISTER_START),
+    switchMap((state: RegisterStart) => {
+      return this.httpClient.post(REGISTER_URL,
+        {
+          firstName: state.firstName,
+          lastName: state.lastName,
+          birthDay: state.birthDay,
+          email: state.email,
+          password: state.password
+        }).pipe(
+        map(__ => {
+          return new LoginStart(state.email, state.password);
+        }),
+        catchError(error => {
+          switch (error.status) {
+            case 403:
+              return of(new AuthenticationFailed('Podane hasło jest nieprawidłowe.'));
+            default:
+              return of(new AuthenticationFailed('Coś poszło nie tak. Spróbuj ponownie później.'));
+          }
+        })
+      );
+    })
+  );
 
   @Effect()
   loginStart = this.actions$.pipe(
@@ -60,7 +89,7 @@ export class AuthenticationEffects {
     switchMap((state: LoginSuccess) => {
       return this.httpClient.get<User>(GET_USER_URL + state.userAuth.userId).pipe(
         map(response => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/dashboard']);
 
           return new UserFetchSuccess(response);
         }),
