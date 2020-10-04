@@ -1,0 +1,16 @@
+.advantage fa-icon {
+  background: #17a2b8;
+  color: #fff;
+  padding: 15px 18px 15px 18px;
+}
+
+.advantage .lead {
+  font-weight: 400;
+}
+
+.title {
+  font-weight: 600;
+  text-transform: capitalize;
+  border-bottom: 3px solid #0275d8;
+  padding-bottom: 5px;
+}

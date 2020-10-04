@@ -9,10 +9,16 @@ import {AppStoreModule} from './app-store.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptorService} from './shared/service/auth-interceptor.service';
 import {TokenExpireInterceptorService} from './shared/service/token-expire-interceptor.service';
+import {NavbarComponent} from './navbar/navbar.component';
+import {HeaderComponent} from './header/header.component';
+import {AdvantagesComponent} from './advantages/advantages.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    HeaderComponent,
+    AdvantagesComponent
   ],
   imports: [
     BrowserModule,
