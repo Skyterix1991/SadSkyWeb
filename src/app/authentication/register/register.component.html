@@ -1,0 +1,76 @@
+<div class="modal-backdrop fade show"></div>
+
+<div class="register-modal p-5">
+  <div class="content mt-5 rounded-lg">
+    <div class="header">
+      <span class="float-right p-3 close" (click)="onClose()">×</span>
+    </div>
+    <div class="body">
+      <div class="icon d-inline-block rounded-circle">
+        <fa-icon [icon]="userIcon" size="3x"></fa-icon>
+      </div>
+      <p class="title h2 font-weight-light mt-2">Rejestracja</p>
+
+      <!-- Login Form -->
+      <form class="p-3 mr-4 ml-4" [formGroup]="registerForm">
+        <!-- Error Message -->
+        <div *ngIf="!!errorMessage" class="alert alert-danger p-2 mb-4">
+          {{ errorMessage }}
+        </div>
+        <!-- Full Name -->
+        <div class="form-row mt-2 mb-2">
+          <div class="form-group col-sm">
+            <!-- First name -->
+            <input class="form-control" formControlName="firstName" placeholder="Imię" type="text">
+          </div>
+          <div class="form-group col-sm">
+            <!-- Last name -->
+            <input class="form-control" formControlName="lastName" placeholder="Nazwisko" type="text">
+          </div>
+        </div>
+        <!-- Birthday -->
+        <div class="form-row mt-2 mb-2">
+          <div class="form-group col-sm-4">
+            <!-- Day -->
+            <select formControlName="day" class="form-control">
+              <option disabled selected hidden>Dzień</option>
+              <option *ngFor="let day of daysInMonth" [value]="day">{{ day }}</option>
+            </select>
+          </div>
+          <div class="form-group col-sm-5">
+            <!-- Month -->
+            <select formControlName="month" class="form-control" (change)="onBirthdayChange()">
+              <option disabled selected hidden>Miesiąc</option>
+              <option *ngFor="let month of months; let index = index" [value]="index + 1">{{ month }}</option>
+            </select>
+          </div>
+          <div class="form-group col-sm-3">
+            <!-- Year -->
+            <select formControlName="year" class="form-control" (change)="onBirthdayChange()">
+              <option disabled selected hidden>Rok</option>
+              <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+            </select>
+          </div>
+        </div>
+        <!-- Email -->
+        <div class="form-group">
+          <input class="form-control" formControlName="email" placeholder="Email" type="email">
+        </div>
+        <!-- Password -->
+        <div class="form-group">
+          <input class="form-control" formControlName="password" placeholder="Password" type="password">
+        </div>
+        <!-- Submit -->
+        <div class="form-group">
+          <button (click)="onSubmit()" [disabled]="!registerForm.valid || isAuthenticating"
+                  class="btn btn-primary btn-lg btn-block p-3 mt-5" type="submit">
+            <span *ngIf="!isAuthenticating">Zarejestruj</span>
+            <fa-icon *ngIf="isAuthenticating" [fixedWidth]="true" [icon]="authenticatingIcon" class="text-white"
+                     size="sm"
+                     spin="true"></fa-icon>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
