@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light shadow-lg p-0">
+  <a [routerLink]="['/']" class="navbar-brand mr-5 ml-5 p-0">
+    <img src="https://dummyimage.com/110x70/fff/000" alt="logo">
+  </a>
+
+  <button (click)="onMenuToggle()" class="navbar-toggler text-black-50" type="button">
+    <fa-icon [icon]="menuToggleIcon" class="pl-2" size="lg"></fa-icon>
+  </button>
+
+  <div class="collapse navbar-collapse text-center pr-3 bg-light" #menuRef>
+    <ul class="navbar-nav mr-auto ml-3">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Strona główna</a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Możliwości</a>
+      </li>
+    </ul>
+
+    <div class="navbar-nav form-inline">
+      <div class="nav-item active">
+        <a class="nav-link mr-2 d-inline-block" (click)="onLoginClicked()" href="#">Zaloguj się</a>
+        <button class="btn btn-primary d-inline-block ml-1" (click)="onRegisterClicked()" type="submit">Dołącz do nas
+        </button>
+      </div>
+    </div>
+
+  </div>
+</nav>
