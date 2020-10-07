@@ -18,7 +18,7 @@ export class RegisterStart implements Action {
 
   constructor(public firstName: string,
               public lastName: string,
-              public birthDay: Date,
+              public birthDay: number[],
               public email: string,
               public password: string) {
   }

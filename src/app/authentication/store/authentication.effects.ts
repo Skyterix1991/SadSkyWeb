@@ -121,7 +121,7 @@ export class AuthenticationEffects {
     tap(__ => {
       localStorage.removeItem('userData');
 
-      this.router.navigate(['/auth/login']);
+      this.router.navigate(['/main']);
     })
   );
 

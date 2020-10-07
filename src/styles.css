@@ -11,3 +11,7 @@
 .text-gray {
   color: gray;
 }
+
+.pointer {
+  cursor: pointer;
+}

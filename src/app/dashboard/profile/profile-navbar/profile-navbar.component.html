@@ -1,0 +1,28 @@
+<nav class="navbar navbar-light fixed-top bg-light shadow-lg p-0 vh-100">
+  <div class="text-center pr-3 bg-light d-block w-100 vh-100">
+
+    <ul class="navbar-nav mr-auto ml-3 text-center">
+      <li class="nav-item text-gray mb-5 pointer" [routerLink]="['/dashboard']">
+        <fa-icon [icon]="faBack" size="lg"></fa-icon>
+        <span class="nav-link d-block mt-n3 h5">Wróć do panelu</span>
+      </li>
+
+      <li class="nav-item text-gray active mt-5 pointer" [routerLink]="['/profile', 'details']"
+          routerLinkActive="active">
+        <fa-icon [icon]="faUser" size="lg"></fa-icon>
+        <span class="nav-link ml-2 h5">Informacje</span>
+      </li>
+
+      <li class="nav-item text-gray pointer" [routerLink]="['/profile', 'privacy']" routerLinkActive="active">
+        <fa-icon [icon]="faKey" size="lg"></fa-icon>
+        <span class="nav-link d-inline-block ml-2 pointer h5">Prywatność</span>
+      </li>
+
+      <li class="nav-item text-gray pointer" [routerLink]="['/profile', 'settings']" routerLinkActive="active">
+        <fa-icon [icon]="faWrench" size="lg"></fa-icon>
+        <span class="nav-link d-inline-block ml-2 h5">Ustawienia</span>
+      </li>
+    </ul>
+
+  </div>
+</nav>

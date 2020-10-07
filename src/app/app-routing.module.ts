@@ -4,7 +4,21 @@ import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 const appRoutes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./main-page/main-page.module').then(m => m.MainPageModule)
+    children: [
+      {
+        path: '',
+        redirectTo: 'main',
+        pathMatch: 'full'
+      },
+      {
+        path: 'main',
+        loadChildren: () => import('./main-page/main-page.module').then(m => m.MainPageModule)
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./dashboard/profile/profile.module').then(m => m.ProfileModule)
+      }
+    ]
   }
 ];
 

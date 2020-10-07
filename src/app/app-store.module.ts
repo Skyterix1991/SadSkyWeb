@@ -6,6 +6,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {AuthenticationEffects} from './authentication/store/authentication.effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
+import {ProfileEffects} from './dashboard/profile/store/profile.effects';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import {environment} from '../environments/environment';
     CommonModule,
     StoreModule.forRoot(fromApp.appReducerMap),
     EffectsModule.forRoot([
-      AuthenticationEffects
+      AuthenticationEffects,
+      ProfileEffects
     ]),
     StoreDevtoolsModule.instrument({logOnly: environment.production}),
   ],
