@@ -19,7 +19,7 @@ export class NoAuthGuard implements CanActivate {
       if (!isAuth) {
         return true;
       }
-      return this.router.createUrlTree(['/dashboard']);
+      return this.router.createUrlTree(['/']);
     }));
   }
 

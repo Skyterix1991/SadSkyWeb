@@ -60,13 +60,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
     const day: number = +this.registerForm.controls.day.value;
     const month: number = +this.registerForm.controls.month.value;
     const year: number = +this.registerForm.controls.year.value;
-    const birthDay = new Date(year, month, day);
 
     const email: string = this.registerForm.controls.email.value;
     const password: string = this.registerForm.controls.password.value;
 
 
-    this.store.dispatch(new RegisterStart(firstName, lastName, birthDay, email, password));
+    this.store.dispatch(new RegisterStart(firstName, lastName, [year, month, day], email, password));
   }
 
   onBirthdayChange(): void {

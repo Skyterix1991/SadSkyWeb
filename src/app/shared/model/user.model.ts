@@ -4,10 +4,10 @@ export class User {
   userId: string;
   firstName: string;
   lastName: string;
-  birthDay: Date;
+  birthDay: number[];
   email: string;
   group: Group;
-  lastTokenRevokeDate: Date;
-  updateDate: Date;
-  createDate: Date;
+  lastTokenRevokeDate: number;
+  updateDate: number;
+  createDate: number;
 }
