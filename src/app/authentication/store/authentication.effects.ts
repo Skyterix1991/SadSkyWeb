@@ -16,6 +16,8 @@ import {
   REGISTER_START,
   RegisterStart,
   ResetAuthentication,
+  USER_FETCH_START,
+  UserFetchStart,
   UserFetchSuccess
 } from './authentication.actions';
 import {catchError, map, switchMap, tap} from 'rxjs/operators';
@@ -23,6 +25,7 @@ import {GET_USER_URL, LOGIN_URL, REGISTER_URL} from '../../shared/config/api.con
 import {of} from 'rxjs';
 import {UserAuth} from '../../shared/model/user-auth';
 import {User} from '../../shared/model/user.model';
+import {UpdateProfileFail} from '../../dashboard/profile/store/profile.actions';
 
 @Injectable()
 export class AuthenticationEffects {
@@ -110,6 +113,21 @@ export class AuthenticationEffects {
         }),
         catchError(__ => {
           return of(new AuthenticationFailed('Nie udało się pobrać informacji o użytkowniku. Spróbuj ponownie później.'));
+        })
+      );
+    })
+  );
+
+  @Effect()
+  userFetchStart = this.actions$.pipe(
+    ofType(USER_FETCH_START),
+    switchMap((state: UserFetchStart) => {
+      return this.httpClient.get<User>(GET_USER_URL + state.userId).pipe(
+        map(response => {
+          return new UserFetchSuccess(response);
+        }),
+        catchError(__ => {
+          return of(new UpdateProfileFail('Nie udało się pobrać informacji o użytkowniku. Spróbuj ponownie później.'));
         })
       );
     })
