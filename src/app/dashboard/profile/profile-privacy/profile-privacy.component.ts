@@ -5,7 +5,7 @@ import {Subscription} from 'rxjs';
 import {faCircleNotch} from '@fortawesome/free-solid-svg-icons/faCircleNotch';
 import {Store} from '@ngrx/store';
 import * as fromApp from '../../../store/app.reducer';
-import {ClearErrorMessage, UpdateProfilePrivacyEmailStart, UpdateProfilePrivacyPasswordStart,} from '../store/profile.actions';
+import {ClearErrorMessage, UpdateProfilePrivacyEmailStart, UpdateProfilePrivacyPasswordStart} from '../store/profile.actions';
 
 @Component({
   selector: 'app-profile-privacy',
