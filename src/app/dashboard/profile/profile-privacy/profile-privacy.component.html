@@ -1,1 +1,45 @@
-<p>profile-privacy works!</p>
+<section class="text-center d-block">
+  <p class="display-3 mt-5">Prywatność</p>
+
+  <div class="forms d-inline-block">
+    <!-- Error Message -->
+    <div *ngIf="!!errorMessage" class="alert alert-danger p-2 mb-4">
+      {{ errorMessage }}
+    </div>
+
+    <form [formGroup]="profilePrivacyEmailForm" class="text-left d-block mt-4">
+      <div class="form-group">
+        <!-- Email -->
+        <label for="email">Email</label>
+        <input class="form-control" id="email" formControlName="email" placeholder="Email" type="email">
+      </div>
+      <p class="small text-red mt-2">Zmiana tych danych będzie wymagała ponownego zalogowania</p>
+      <button (click)="onEmailSave()"
+              [disabled]="!profilePrivacyEmailForm.valid || isFetching || !profilePrivacyEmailForm.touched"
+              class="btn btn-primary btn-lg btn-block p-3 mt-4" type="submit">
+        <span *ngIf="!isFetching">Zaktualizuj</span>
+        <fa-icon *ngIf="isFetching" [fixedWidth]="true" [icon]="faCircleNotch" class="text-white"
+                 size="sm"
+                 spin="true"></fa-icon>
+      </button>
+    </form>
+
+    <form [formGroup]="profilePrivacyPasswordForm" class="text-left d-block mt-4">
+      <div class="form-group">
+        <!-- Password -->
+        <label for="password">Hasło</label>
+        <input class="form-control" id="password" formControlName="password" placeholder="Hasło" type="password">
+      </div>
+      <p class="small text-red mt-2">Zmiana tych danych będzie wymagała ponownego zalogowania</p>
+      <button (click)="onPasswordSave()"
+              [disabled]="!profilePrivacyPasswordForm.valid || isFetching || !profilePrivacyPasswordForm.touched"
+              class="btn btn-primary btn-lg btn-block p-3 mt-4" type="submit">
+        <span *ngIf="!isFetching">Zaktualizuj</span>
+        <fa-icon *ngIf="isFetching" [fixedWidth]="true" [icon]="faCircleNotch" class="text-white"
+                 size="sm"
+                 spin="true"></fa-icon>
+      </button>
+    </form>
+  </div>
+
+</section>

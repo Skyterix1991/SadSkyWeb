@@ -6,6 +6,7 @@ export const REGISTER_START = '[Authentication] Register start';
 
 export const LOGIN_START = '[Authentication] Login start';
 export const LOGIN_SUCCESS = '[Authentication] Login success';
+export const USER_FETCH_START = '[Authentication] User fetch start';
 export const USER_FETCH_SUCCESS = '[Authentication] User fetch success';
 export const AUTHENTICATION_FAILED = '[Authentication] Authentication failed';
 export const LOGOUT = '[Authentication] Logout';
@@ -35,6 +36,13 @@ export class AutoLoginSuccess implements Action {
   readonly type = AUTO_LOGIN_SUCCESS;
 
   constructor(public userAuth: UserAuth) {
+  }
+}
+
+export class UserFetchStart implements Action {
+  readonly type = USER_FETCH_START;
+
+  constructor(public userId: string) {
   }
 }
 
@@ -89,4 +97,5 @@ export type AuthenticationActions =
   Logout |
   AutoLoginStart |
   AutoLoginSuccess |
-  ResetAuthentication;
+  ResetAuthentication |
+  UserFetchStart;

@@ -5,7 +5,7 @@ import {Subscription} from 'rxjs';
 import {User} from '../../../shared/model/user.model';
 import {DateConstants, MONTHS, YEARS} from '../../../shared/config/date.constants';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {UpdateProfileDetailsStart} from '../store/profile.actions';
+import {ClearErrorMessage, UpdateProfileDetailsStart} from '../store/profile.actions';
 import {faCircleNotch} from '@fortawesome/free-solid-svg-icons/faCircleNotch';
 
 @Component({
@@ -35,6 +35,7 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(new ClearErrorMessage());
     this.authenticationStoreSubscription = this.store.select('authentication').subscribe(state => {
       this.user = state.user;
     });
@@ -96,8 +97,18 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
     }
 
     this.profileDetailsForm = new FormGroup({
-      firstName: new FormControl(this.user.firstName, [Validators.required]),
-      lastName: new FormControl(this.user.lastName, [Validators.required]),
+      firstName: new FormControl(this.user.firstName, [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(255),
+        Validators.pattern('^[a-zA-Z]+$')
+      ]),
+      lastName: new FormControl(this.user.lastName, [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(255),
+        Validators.pattern('^[a-zA-Z]+$')
+      ]),
       day: new FormControl(day, [Validators.required]),
       month: new FormControl(month, [Validators.required]),
       year: new FormControl(year, [Validators.required]),
