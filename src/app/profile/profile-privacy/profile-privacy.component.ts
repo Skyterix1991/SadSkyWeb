@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {User} from '../../../shared/model/user.model';
+import {User} from '../../shared/model/user.model';
 import {Subscription} from 'rxjs';
 import {faCircleNotch} from '@fortawesome/free-solid-svg-icons/faCircleNotch';
 import {Store} from '@ngrx/store';
-import * as fromApp from '../../../store/app.reducer';
+import * as fromApp from '../../store/app.reducer';
 import {ClearErrorMessage, UpdateProfilePrivacyEmailStart, UpdateProfilePrivacyPasswordStart} from '../store/profile.actions';
 
 @Component({

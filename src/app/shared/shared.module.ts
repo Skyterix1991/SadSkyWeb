@@ -1,12 +1,14 @@
 import {NgModule} from '@angular/core';
 import {PlaceholderDirective} from './directive/placeholder.directive';
+import {DropdownDirective} from './directive/dropdown.directive';
 
 @NgModule({
   declarations: [
-    PlaceholderDirective
+    PlaceholderDirective, DropdownDirective
   ],
   exports: [
-    PlaceholderDirective
+    PlaceholderDirective,
+    DropdownDirective
   ]
 })
 export class SharedModule {

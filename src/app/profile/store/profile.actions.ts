@@ -1,6 +1,7 @@
 import {Action} from '@ngrx/store';
 
 export const UPDATE_PROFILE_DETAILS_START = '[Profile] Update profile details start';
+export const UPDATE_PROFILE_SETTINGS_START = '[Profile] Update profile settings start';
 export const UPDATE_PROFILE_PRIVACY_EMAIL_START = '[Profile] Update profile privacy email start';
 export const UPDATE_PROFILE_PRIVACY_PASSWORD_START = '[Profile] Update profile privacy password start';
 export const UPDATE_PROFILE_FAIL = '[Profile] Update profile fail';
@@ -18,6 +19,13 @@ export class UpdateProfilePrivacyPasswordStart implements Action {
   readonly type = UPDATE_PROFILE_PRIVACY_PASSWORD_START;
 
   constructor(public userId: string, public password: string) {
+  }
+}
+
+export class UpdateProfileSettingsStart implements Action {
+  readonly type = UPDATE_PROFILE_SETTINGS_START;
+
+  constructor(public userId: string, public wakeHour: number) {
   }
 }
 
@@ -51,6 +59,7 @@ export class ClearErrorMessage implements Action {
 
 export type ProfileActions =
   UpdateProfileDetailsStart |
+  UpdateProfileSettingsStart |
   UpdateProfileFail |
   UpdateProfileSuccess |
   UpdateProfilePrivacyEmailStart |

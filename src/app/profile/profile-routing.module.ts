@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {ProfileComponent} from './profile.component';
-import {AuthGuard} from '../../shared/guard/auth.guard';
 import {ProfileDetailsComponent} from './profile-details/profile-details.component';
 import {ProfilePrivacyComponent} from './profile-privacy/profile-privacy.component';
 import {ProfileSettingsComponent} from './profile-settings/profile-settings.component';
@@ -10,7 +9,6 @@ import {ProfileSettingsComponent} from './profile-settings/profile-settings.comp
 const routes: Routes = [
   {
     path: '',
-    canActivate: [AuthGuard],
     component: ProfileComponent,
     children: [
       {

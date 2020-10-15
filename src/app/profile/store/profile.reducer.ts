@@ -5,6 +5,7 @@ import {
   UPDATE_PROFILE_FAIL,
   UPDATE_PROFILE_PRIVACY_EMAIL_START,
   UPDATE_PROFILE_PRIVACY_PASSWORD_START,
+  UPDATE_PROFILE_SETTINGS_START,
   UPDATE_PROFILE_SUCCESS
 } from './profile.actions';
 
@@ -38,6 +39,12 @@ export function profileReducer(state = initialState, action: ProfileActions): St
         errorMessage: null
       };
     case UPDATE_PROFILE_DETAILS_START:
+      return {
+        ...state,
+        isFetching: true,
+        errorMessage: null
+      };
+    case UPDATE_PROFILE_SETTINGS_START:
       return {
         ...state,
         isFetching: true,

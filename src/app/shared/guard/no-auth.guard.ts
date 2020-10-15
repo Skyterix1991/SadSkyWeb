@@ -15,11 +15,10 @@ export class NoAuthGuard implements CanActivate {
     Promise<boolean | UrlTree> | boolean | UrlTree {
 
     return this.store.select('authentication').pipe(take(1), map(authState => {
-      const isAuth = !!authState.user;
-      if (!isAuth) {
+      if (!authState.user) {
         return true;
       }
-      return this.router.createUrlTree(['/']);
+      return this.router.createUrlTree(['/dashboard']);
     }));
   }
 

@@ -7,6 +7,7 @@ export class User {
   birthDay: number[];
   email: string;
   group: Group;
+  wakeHour: number;
   lastTokenRevokeDate: number;
   updateDate: number;
   createDate: number;

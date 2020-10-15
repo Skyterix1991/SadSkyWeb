@@ -1,0 +1,23 @@
+<section class="text-center d-block">
+  <p class="display-3 mt-5">Ustawienia</p>
+
+  <form [formGroup]="profileDetailsForm" class="text-left d-inline-block mt-4">
+    <!-- Error Message -->
+    <div *ngIf="!!errorMessage" class="alert alert-danger p-2 mb-4 text-center">
+      {{ errorMessage }}
+    </div>
+    <div class="form-group">
+      <!-- Wake hour -->
+      <label for="wakeHour">Godzina wstawania</label>
+      <input class="form-control" id="wakeHour" formControlName="wakeHour" placeholder="Godzina wstawania" min="0"
+             maxlength="23" type="number"/>
+    </div>
+    <button (click)="onSave()" [disabled]="!profileDetailsForm.valid || isFetching || !profileDetailsForm.touched"
+            class="btn btn-primary btn-lg btn-block p-3 mt-5" type="submit">
+      <span *ngIf="!isFetching">Zaktualizuj</span>
+      <fa-icon *ngIf="isFetching" [fixedWidth]="true" [icon]="faCircleNotch" class="text-white"
+               size="sm"
+               spin="true"></fa-icon>
+    </button>
+  </form>
+</section>

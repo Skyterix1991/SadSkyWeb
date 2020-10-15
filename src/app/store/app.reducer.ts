@@ -1,7 +1,7 @@
 import {ActionReducerMap} from '@ngrx/store';
 
 import * as fromAuthentication from '../authentication/store/authentication.reducer';
-import * as fromProfile from '../dashboard/profile/store/profile.reducer';
+import * as fromProfile from '../profile/store/profile.reducer';
 
 export interface AppState {
   authentication: fromAuthentication.State;

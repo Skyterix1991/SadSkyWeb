@@ -6,7 +6,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {AuthenticationEffects} from './authentication/store/authentication.effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
-import {ProfileEffects} from './dashboard/profile/store/profile.effects';
+import {ProfileEffects} from './profile/store/profile.effects';
 
 
 @NgModule({

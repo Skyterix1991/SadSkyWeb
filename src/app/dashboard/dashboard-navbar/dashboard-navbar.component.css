@@ -1,7 +1,5 @@
-.navbar {
-  height: 70px;
-  font-weight: 300;
-  text-transform: capitalize;
+.navbar-dashboard {
+  height: 60px;
 }
 
 .navbar-toggler {
@@ -12,4 +10,9 @@
   height: 40px;
   line-height: 40px;
   text-align: center;
+}
+
+.navbar-toggler {
+  outline: none;
+  border: none;
 }

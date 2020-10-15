@@ -2,23 +2,46 @@ import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import {HttpClient} from '@angular/common/http';
 import {catchError, map, switchMap} from 'rxjs/operators';
-import {UPDATE_USER_URL} from '../../../shared/config/api.constants';
+import {UPDATE_USER_URL} from '../../shared/config/api.constants';
 import {of} from 'rxjs';
 import {
   UPDATE_PROFILE_DETAILS_START,
   UPDATE_PROFILE_PRIVACY_EMAIL_START,
   UPDATE_PROFILE_PRIVACY_PASSWORD_START,
+  UPDATE_PROFILE_SETTINGS_START,
   UPDATE_PROFILE_SUCCESS,
   UpdateProfileDetailsStart,
   UpdateProfileFail,
   UpdateProfilePrivacyEmailStart,
   UpdateProfilePrivacyPasswordStart,
+  UpdateProfileSettingsStart,
   UpdateProfileSuccess
 } from './profile.actions';
-import {UserFetchStart} from '../../../authentication/store/authentication.actions';
+import {UserFetchStart} from '../../authentication/store/authentication.actions';
 
 @Injectable()
 export class ProfileEffects {
+
+  @Effect()
+  updateProfileSettingsStart = this.actions$.pipe(
+    ofType(UPDATE_PROFILE_SETTINGS_START),
+    switchMap((state: UpdateProfileSettingsStart) => {
+      return this.httpClient.patch(UPDATE_USER_URL + state.userId,
+        {
+          wakeHour: state.wakeHour
+        }).pipe(
+        map(__ => {
+          return new UpdateProfileSuccess(state.userId);
+        }),
+        catchError(error => {
+          switch (error.status) {
+            default:
+              return of(new UpdateProfileFail('Coś poszło nie tak. Spróbuj ponownie później.'));
+          }
+        })
+      );
+    })
+  );
 
   @Effect()
   updateProfileDetailsStart = this.actions$.pipe(

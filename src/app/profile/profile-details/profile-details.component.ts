@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import * as fromApp from '../../../store/app.reducer';
+import * as fromApp from '../../store/app.reducer';
 import {Subscription} from 'rxjs';
-import {User} from '../../../shared/model/user.model';
-import {DateConstants, MONTHS, YEARS} from '../../../shared/config/date.constants';
+import {User} from '../../shared/model/user.model';
+import {DateConstants, MONTHS, YEARS} from '../../shared/config/date.constants';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ClearErrorMessage, UpdateProfileDetailsStart} from '../store/profile.actions';
 import {faCircleNotch} from '@fortawesome/free-solid-svg-icons/faCircleNotch';

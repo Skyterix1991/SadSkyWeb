@@ -25,7 +25,7 @@ import {GET_USER_URL, LOGIN_URL, REGISTER_URL} from '../../shared/config/api.con
 import {of} from 'rxjs';
 import {UserAuth} from '../../shared/model/user-auth';
 import {User} from '../../shared/model/user.model';
-import {UpdateProfileFail} from '../../dashboard/profile/store/profile.actions';
+import {UpdateProfileFail} from '../../profile/store/profile.actions';
 
 @Injectable()
 export class AuthenticationEffects {

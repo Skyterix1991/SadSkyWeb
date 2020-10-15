@@ -1,5 +1,7 @@
 import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
+import {AuthGuard} from './shared/guard/auth.guard';
+import {NoAuthGuard} from './shared/guard/no-auth.guard';
 
 const appRoutes: Routes = [
   {
@@ -12,11 +14,18 @@ const appRoutes: Routes = [
       },
       {
         path: 'main',
+        canActivate: [NoAuthGuard],
         loadChildren: () => import('./main-page/main-page.module').then(m => m.MainPageModule)
       },
       {
         path: 'profile',
-        loadChildren: () => import('./dashboard/profile/profile.module').then(m => m.ProfileModule)
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+      },
+      {
+        path: 'dashboard',
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
       }
     ]
   }
