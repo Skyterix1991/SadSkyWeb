@@ -1,0 +1,8 @@
+<div class="list-group-item prediction pointer" (click)="onClick()"
+     routerLinkActive="active" [routerLink]="['/dashboard', 'details', this.prediction.predictionId]">
+  <div class="text-white icon shadow" [ngClass]="isPredictionExpired() ? 'bg-green' : 'bg-gray'">
+    <fa-icon [icon]="predictionIcon"></fa-icon>
+  </div>
+  <span class="ml-2 h5">{{ createDate.getDay() + ' ' + MONTHS[createDate.getMonth()] }}
+    - {{ prediction.expireDate[2] + ' ' + MONTHS[prediction.expireDate[1]] }}</span>
+</div>

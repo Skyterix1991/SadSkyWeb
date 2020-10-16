@@ -4,6 +4,10 @@
   text-transform: capitalize;
 }
 
+.nav-item {
+  user-select: none;
+}
+
 .navbar-toggler {
   outline: none;
   border: none;

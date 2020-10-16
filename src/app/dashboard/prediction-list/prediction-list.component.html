@@ -1,0 +1,10 @@
+<section>
+  <ul class="list-group pl-1">
+    <!-- Predictions -->
+    <app-prediction-item *ngFor="let prediction of predictions" [prediction]="prediction"></app-prediction-item>
+    <!-- Spinner -->
+    <li *ngIf="isFetching" class="spinner text-center">
+      <fa-icon size="3x" [icon]="faCircleNotch" spin="true"></fa-icon>
+    </li>
+  </ul>
+</section>

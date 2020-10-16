@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dashboard navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-dashboard navbar-expand-lg navbar-light bg-light shadow">
   <button (click)="onMenuToggle()" class="navbar-toggler text-black-50 ml-auto" type="button">
     <fa-icon [icon]="menuToggleIcon" size="lg"></fa-icon>
   </button>
@@ -16,7 +16,7 @@
           {{ user.firstName }}
         </a>
         <div class="dropdown-menu dropdown-menu-right">
-          <a class="dropdown-item pointer" [routerLink]="['/profile']">Profil</a>
+          <a class="dropdown-item pointer" [routerLink]="['/profile']" (click)="clearSelectedPrediction()">Profil</a>
           <a class="dropdown-item pointer" (click)="onLogout()">Wyloguj</a>
         </div>
       </li>

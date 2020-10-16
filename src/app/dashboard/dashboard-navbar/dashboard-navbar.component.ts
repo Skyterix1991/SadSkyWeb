@@ -6,6 +6,7 @@ import {User} from '../../shared/model/user.model';
 import {Logout} from '../../authentication/store/authentication.actions';
 import {faBars} from '@fortawesome/free-solid-svg-icons/faBars';
 import {faTimes} from '@fortawesome/free-solid-svg-icons/faTimes';
+import {ClearSelectedPrediction} from '../store/dashboard.actions';
 
 @Component({
   selector: 'app-dashboard-navbar',
@@ -40,6 +41,7 @@ export class DashboardNavbarComponent implements OnInit, OnDestroy {
 
   onLogout(): void {
     this.store.dispatch(new Logout());
+    this.clearSelectedPrediction();
   }
 
   onMenuToggle(): void {
@@ -52,5 +54,9 @@ export class DashboardNavbarComponent implements OnInit, OnDestroy {
     }
 
     this.isMenuOpened = !this.isMenuOpened;
+  }
+
+  clearSelectedPrediction(): void {
+    this.store.dispatch(new ClearSelectedPrediction());
   }
 }

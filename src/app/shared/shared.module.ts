@@ -1,14 +1,16 @@
 import {NgModule} from '@angular/core';
 import {PlaceholderDirective} from './directive/placeholder.directive';
 import {DropdownDirective} from './directive/dropdown.directive';
+import {EmotionTranslatePipe} from './pipe/EmotionTranslate.pipe';
 
 @NgModule({
   declarations: [
-    PlaceholderDirective, DropdownDirective
+    PlaceholderDirective, DropdownDirective, EmotionTranslatePipe
   ],
   exports: [
     PlaceholderDirective,
-    DropdownDirective
+    DropdownDirective,
+    EmotionTranslatePipe
   ]
 })
 export class SharedModule {

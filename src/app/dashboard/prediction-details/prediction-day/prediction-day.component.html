@@ -1,0 +1,3 @@
+<section *ngIf="!!selectedPrediction" class="container-fluid text-left pt-2">
+  <app-prediction-day-part [day]="selectedPrediction.days[dayNumber - 1]"></app-prediction-day-part>
+</section>

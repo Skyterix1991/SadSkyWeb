@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
 
+*:focus {
+  outline: none !important;
+}
+
 * {
   font-family: 'Open Sans', sans-serif;
 }
@@ -18,4 +22,29 @@
 
 .text-red {
   color: red;
+}
+
+.text-green {
+  color: #28a745;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ccc;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: gray;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #3c3c3c;
 }

@@ -1,0 +1,11 @@
+<p class="display-4 mt-3">{{ dayPartName }}</p>
+<h5 class="ml-1 mt-5 text-green font-weight-bold">Pozytywne</h5>
+<ul class="p-2 emotions">
+  <li *ngFor="let emotion of positiveEmotions"
+      class="shadow rounded-pill p-1 pr-3 pl-3 mr-2">{{ emotion | emotionTranslate | titlecase }}</li>
+</ul>
+<h5 class="ml-1 text-red font-weight-bold">Negatywne</h5>
+<ul class="p-2 emotions">
+  <li *ngFor="let emotion of negativeEmotions"
+      class="shadow rounded-pill p-1 pr-3 pl-3 mr-2">{{ emotion | emotionTranslate | titlecase }}</li>
+</ul>
