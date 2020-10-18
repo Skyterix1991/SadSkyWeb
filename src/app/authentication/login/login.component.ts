@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {faUser} from '@fortawesome/free-solid-svg-icons/faUser';
 import {LoginStart} from '../store/authentication.actions';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -8,6 +8,7 @@ import {Store} from '@ngrx/store';
 
 import * as fromApp from '../../store/app.reducer';
 import {AuthenticationService} from '../authentication.service';
+import {DOCUMENT} from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   authenticationStoreSubscription: Subscription;
 
-  constructor(private store: Store<fromApp.AppState>, private authenticationService: AuthenticationService) {
+  constructor(private store: Store<fromApp.AppState>,
+              private authenticationService: AuthenticationService,
+              @Inject(DOCUMENT) private document: Document) {
   }
 
   ngOnInit(): void {
@@ -35,10 +38,15 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.errorMessage = state.errorMessage;
       this.isAuthenticating = state.isAuthenticating;
     });
+
+    window.scroll(0, 0);
+    this.document.body.classList.add('modal-open');
   }
 
   ngOnDestroy(): void {
     this.authenticationStoreSubscription.unsubscribe();
+
+    this.document.body.classList.remove('modal-open');
   }
 
   onClose(): void {

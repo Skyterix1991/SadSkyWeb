@@ -34,7 +34,8 @@ export class PredictionListComponent implements OnInit, OnDestroy {
     });
     this.predictionStoreSubscription = this.store.select('dashboard').subscribe(state => {
       this.predictions = state.predictions;
-      this.isFetching = state.isFetching;
+
+      this.isFetching = state.arePredictionsFetching;
     });
 
     this.store.dispatch(new GetUserPredictionsStart(this.user.userId));

@@ -33,6 +33,39 @@ export const NegativeEmotions: string[] = [
 ];
 
 export class EmotionUtils {
+  static EMOTIONS = [
+    'ACTIVE',
+    'AMUSED',
+    'ENERGIZED',
+    'EXCITED',
+    'ENTHUSIASTIC',
+    'HAPPY',
+    'INTERESTED',
+    'PROUD',
+    'PEACEFUL',
+    'FULFILLED',
+    'SAFE',
+    'CONFIDENT',
+    'RELAXED',
+
+    // Negative emotions
+    'NERVOUS',
+    'SCARED',
+    'APATHETIC',
+    'ASHAMED',
+    'GUILTY',
+    'HATE',
+    'BRUNT',
+    'DISHEARTENED',
+    'HOLLOW',
+    'HELPLESS',
+    'HOPELESS',
+    'LONELY',
+    'SAD',
+    'TIRED',
+    'EXHAUSTED'
+  ];
+
   static getEmotionTranslation(emotion: string): string {
     switch (emotion) {
       case 'ACTIVE':

@@ -12,6 +12,10 @@ import {PredictionDayNavbarComponent} from './prediction-details/prediction-day-
 import {PredictionDayComponent} from './prediction-details/prediction-day/prediction-day.component';
 import {PredictionDayPartComponent} from './prediction-details/prediction-day/prediction-day-part/prediction-day-part.component';
 import {PredictionDayPartNavbarComponent} from './prediction-details/prediction-day-part-navbar/prediction-day-part-navbar.component';
+import {PredictionDayPartEditComponent} from './prediction-details/prediction-day/prediction-day-part/prediction-day-part-edit/prediction-day-part-edit.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {PredictionResultComponent} from './prediction-details/prediction-result/prediction-result.component';
+import {PredictionResultViewComponent} from './prediction-details/prediction-result/prediction-result-view/prediction-result-view.component';
 
 
 @NgModule({
@@ -24,14 +28,19 @@ import {PredictionDayPartNavbarComponent} from './prediction-details/prediction-
     PredictionDayNavbarComponent,
     PredictionDayComponent,
     PredictionDayPartComponent,
-    PredictionDayPartNavbarComponent
+    PredictionDayPartNavbarComponent,
+    PredictionDayPartEditComponent,
+    PredictionResultComponent,
+    PredictionResultViewComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
-    FontAwesomeModule
-  ]
+    FontAwesomeModule,
+    ReactiveFormsModule
+  ],
+  bootstrap: [PredictionDayPartEditComponent, PredictionResultViewComponent]
 })
 export class DashboardModule {
 }

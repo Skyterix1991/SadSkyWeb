@@ -12,7 +12,6 @@ import {RegisterComponent} from '../authentication/register/register.component';
 })
 export class MainPageComponent implements OnInit, OnDestroy {
 
-
   @ViewChild(PlaceholderDirective) placeholderDirective: PlaceholderDirective;
 
   private registerOpenSubscription: Subscription;

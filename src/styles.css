@@ -8,6 +8,11 @@
   font-family: 'Open Sans', sans-serif;
 }
 
+body.modal-open {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
 .ng-invalid.ng-touched {
   border-color: red;
 }

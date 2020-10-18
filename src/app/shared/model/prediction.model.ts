@@ -5,8 +5,9 @@ export class Prediction {
   predictionId: string;
   owner: User;
   days: Day[];
-  depressionResult: { NEGATIVE, MILD_DEPRESSION, SEVERE_DEPRESSION };
-  anxietyResult: { NEGATIVE, MILD_ANXIETY, SEVERE_ANXIETY };
+  depressionResult: string;
+  anxietyResult: string;
+  expireDays: number;
   expireDate: number[];
   updateDate: number;
   createDate: number;

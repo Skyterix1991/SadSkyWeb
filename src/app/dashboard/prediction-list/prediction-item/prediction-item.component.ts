@@ -26,7 +26,6 @@ export class PredictionItemComponent implements OnInit {
   selectedPrediction: Prediction;
 
   createDate: Date;
-  expireDate: Date;
 
   predictionStoreSubscription: Subscription;
 

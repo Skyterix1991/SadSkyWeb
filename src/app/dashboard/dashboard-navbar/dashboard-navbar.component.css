@@ -1,4 +1,4 @@
-.navbar-dashboard {
+.navbar {
   height: 60px;
 }
 
@@ -19,4 +19,14 @@
 .navbar-toggler {
   outline: none;
   border: none;
+}
+
+.navbar-collapse {
+  width: 100vw;
+  z-index: 1000;
+  background: #f8f9fa;
+}
+
+.offset {
+  margin-top: 70px;
 }

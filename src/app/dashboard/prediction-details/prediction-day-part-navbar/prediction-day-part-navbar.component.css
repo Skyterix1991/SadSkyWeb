@@ -2,8 +2,19 @@
   height: 60px;
 }
 
-.nav-item {
+.nav-item a {
   user-select: none;
+  transition: .3s all ease;
+}
+
+.nav-item.active a {
+  background: #0275d8;
+  color: #fff;
+}
+
+.navbar-collapse {
+  z-index: 1000;
+  background: #f8f9fa;
 }
 
 .navbar-toggler {

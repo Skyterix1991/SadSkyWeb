@@ -25,8 +25,10 @@
 
 .register-modal .content {
   display: inline-block;
-  width: 450px;
-  height: auto;
+  width: 75vw;
+  max-width: 450px;
+  min-height: 550px;
+  max-height: 75vh;
   background: #fff;
 }
 

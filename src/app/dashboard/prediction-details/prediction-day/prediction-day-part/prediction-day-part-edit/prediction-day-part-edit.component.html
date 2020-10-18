@@ -1,0 +1,40 @@
+<div class="modal-backdrop show"></div>
+
+<div class="prediction-day-part-modal">
+  <div class="content overflow-auto rounded-lg">
+    <div class="header">
+      <span class="float-right p-3 close" (click)="onClose()">×</span>
+    </div>
+    <div class="body">
+      <div class="icon d-inline-block rounded-circle">
+        <fa-icon [icon]="faMeh" size="3x"></fa-icon>
+      </div>
+      <p class="title h2 font-weight-light mt-2">Edytuj emocje</p>
+
+      <!-- Edit emotions form -->
+      <form class="p-3 mr-4 ml-4 text-left" [formGroup]="editEmotionsForm">
+        <!-- Error Message -->
+        <div *ngIf="!!errorMessage" class="alert alert-danger p-2 mb-4">
+          {{ errorMessage }}
+        </div>
+        <!-- Emotions -->
+        <h5 class="ml-1 mt-3 font-weight-bold">Emocje</h5>
+        <ul class="p-2 emotions">
+          <li *ngFor="let emotion of emotions" (click)="onEmotionClicked(emotion)"
+              [ngClass]="{'active': selectedEmotions.includes(emotion)}"
+              class="shadow-sm rounded-pill p-1 pr-3 pl-3 mr-2 pointer">{{ emotion | emotionTranslate | titlecase }}</li>
+        </ul>
+        <!-- Submit -->
+        <div class="form-group">
+          <button (click)="onSubmit()"
+                  [disabled]="!editEmotionsForm.valid || isFetching || selectedEmotions.length == 0"
+                  class="btn btn-primary btn-lg btn-block p-3 mt-5" type="submit">
+            <span *ngIf="!isFetching">Aktualizuj</span>
+            <fa-icon *ngIf="isFetching" [fixedWidth]="true" [icon]="faCircleNotch" class="text-white"
+                     size="sm" spin="true"></fa-icon>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

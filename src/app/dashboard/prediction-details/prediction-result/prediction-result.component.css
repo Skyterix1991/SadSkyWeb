@@ -1,0 +1,10 @@
+.view {
+  position: absolute;
+  bottom: 7px;
+  font-size: 30px;
+  color: #0275d8;
+}
+
+.result-name {
+  position: relative;
+}

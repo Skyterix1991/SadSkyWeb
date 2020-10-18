@@ -1,17 +1,18 @@
 <!-- Prediction details -->
-<section class="container-fluid row">
+<section *ngIf="!isFetching && !!selectedPrediction" class="container-fluid p-0 m-0 mt-3 row">
   <!-- Current day -->
-  <div class="col-lg-12 text-center">
+  <div class="col-lg-auto text-center">
     <app-prediction-day-navbar></app-prediction-day-navbar>
   </div>
-  <div class="col-lg-12 text-center">
+  <div class="col-lg-auto text-center">
     <app-prediction-day-part-navbar></app-prediction-day-part-navbar>
   </div>
   <div class="col-lg-12 text-center">
     <router-outlet></router-outlet>
-  </div>
-  <!-- Spinner -->
-  <div *ngIf="isFetching" class="col-lg-12 spinner text-center">
-    <fa-icon size="3x" [icon]="faCircleNotch" spin="true"></fa-icon>
+    <app-prediction-result></app-prediction-result>
   </div>
 </section>
+<!-- Spinner -->
+<div *ngIf="isFetching" class="col-lg-12 spinner text-center">
+  <fa-icon size="3x" [icon]="faCircleNotch" spin="true"></fa-icon>
+</div>

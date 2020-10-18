@@ -1,0 +1,13 @@
+<section *ngIf="!!selectedPrediction.depressionResult || canGeneratePrediction" class="container-fluid text-left pt-2">
+  <div class="result-name mt-3">
+    <div *ngIf="!!errorMessage" class="alert alert-danger p-2 mb-4">
+      {{ errorMessage }}
+    </div>
+    <span class="display-4">Rezultat</span>
+    <fa-icon *ngIf="!!selectedPrediction.depressionResult" (click)="onViewResult()" class="ml-3 text-blue pointer view"
+             [icon]="faClipboard"></fa-icon>
+    <button *ngIf="!selectedPrediction.depressionResult && canGeneratePrediction" (click)="onResultGenerate()"
+            class="btn btn-primary btn-lg btn-block p-3 mt-5" type="submit">Generuj rezultat
+    </button>
+  </div>
+</section>

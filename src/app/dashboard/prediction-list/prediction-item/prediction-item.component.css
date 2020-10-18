@@ -1,5 +1,5 @@
 .prediction {
-  height: 62px;
+  min-height: 62px;
   line-height: 31px;
   user-select: none;
   background: linear-gradient(to right, white 50%, #0275d8 50%) left bottom;

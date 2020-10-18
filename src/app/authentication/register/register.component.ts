@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {faUser} from '@fortawesome/free-solid-svg-icons/faUser';
 import {faCircleNotch} from '@fortawesome/free-solid-svg-icons/faCircleNotch';
@@ -8,6 +8,7 @@ import * as fromApp from '../../store/app.reducer';
 import {AuthenticationService} from '../authentication.service';
 import {DateConstants, MONTHS, YEARS} from '../../shared/config/date.constants';
 import {RegisterStart} from '../store/authentication.actions';
+import {DOCUMENT} from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -30,7 +31,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   authenticationStoreSubscription: Subscription;
 
-  constructor(private store: Store<fromApp.AppState>, private authenticationService: AuthenticationService) {
+  constructor(private store: Store<fromApp.AppState>,
+              private authenticationService: AuthenticationService,
+              @Inject(DOCUMENT) private document: Document) {
   }
 
   ngOnInit(): void {
@@ -39,10 +42,15 @@ export class RegisterComponent implements OnInit, OnDestroy {
       this.errorMessage = state.errorMessage;
       this.isAuthenticating = state.isAuthenticating;
     });
+
+    window.scroll(0, 0);
+    this.document.body.classList.add('modal-open');
   }
 
   ngOnDestroy(): void {
     this.authenticationStoreSubscription.unsubscribe();
+
+    this.document.body.classList.remove('modal-open');
   }
 
   onClose(): void {

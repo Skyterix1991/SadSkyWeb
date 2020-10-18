@@ -7,7 +7,7 @@ import * as fromDashboard from '../dashboard/store/dashboard.reducer';
 export interface AppState {
   authentication: fromAuthentication.State;
   profile: fromProfile.State;
-  dashboard: fromDashboard.State
+  dashboard: fromDashboard.State;
 }
 
 export const appReducerMap: ActionReducerMap<AppState> = {

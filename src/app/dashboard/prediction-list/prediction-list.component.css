@@ -1,5 +1,6 @@
 .list-group {
   list-style-type: none;
+  max-height: calc(100vh - 70px);
 }
 
 .spinner {

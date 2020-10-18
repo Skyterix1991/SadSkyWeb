@@ -34,12 +34,11 @@ export class PredictionDetailsComponent implements OnInit, OnDestroy {
     });
     this.predictionStoreSubscription = this.store.select('dashboard').subscribe(state => {
       this.selectedPrediction = state.selectedPrediction;
-      this.isFetching = state.isFetching;
+      this.isFetching = state.isPredictionFetching;
     });
 
-    if (!this.selectedPrediction) {
-      this.store.dispatch(new GetUserPredictionStart(this.user.userId, this.activatedRoute.snapshot.params.predictionId));
-    }
+    this.store.dispatch(new GetUserPredictionStart(this.user.userId, this.activatedRoute.snapshot.params.predictionId));
+
   }
 
   ngOnDestroy(): void {
