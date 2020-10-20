@@ -1,24 +1,29 @@
-<nav class="navbar navbar-light fixed-top bg-light shadow-lg p-0 vh-100">
-  <div class="text-center pr-3 bg-light d-block w-100 vh-100">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light shadow-lg p-0">
+  <button (click)="onMenuToggle()" class="navbar-toggler text-black-50 mr-3" type="button">
+    <fa-icon [icon]="menuToggleIcon" class="pl-2" size="lg"></fa-icon>
+  </button>
 
-    <ul class="navbar-nav mr-auto ml-3 text-center">
-      <li class="nav-item text-gray mb-5 pointer" [routerLink]="['/dashboard']">
+  <div class="collapse navbar-collapse text-center pr-3 bg-light" #menuRef>
+    <ul class="navbar-nav mr-auto ml-3">
+      <li class="nav-item text-gray pointer" [routerLink]="['/dashboard']">
         <fa-icon [icon]="faBack" size="lg"></fa-icon>
-        <span class="nav-link d-block mt-n3 h5">Wróć do panelu</span>
+        <p class="nav-link mt-n3 ml-2 h5">Wróć do panelu</p>
       </li>
+    </ul>
 
-      <li class="nav-item text-gray mt-5 pointer" [routerLink]="['/profile', 'details']"
+    <ul class="navbar-nav text-gray">
+      <li class="nav-item pointer mr-2 ml-2" [routerLink]="['/profile', 'details']"
           routerLinkActive="active">
         <fa-icon [icon]="faUser" size="lg"></fa-icon>
         <span class="nav-link ml-2 h5">Informacje</span>
       </li>
 
-      <li class="nav-item text-gray pointer" [routerLink]="['/profile', 'privacy']" routerLinkActive="active">
+      <li class="nav-item pointer mr-2 ml-2" [routerLink]="['/profile', 'privacy']" routerLinkActive="active">
         <fa-icon [icon]="faKey" size="lg"></fa-icon>
         <span class="nav-link d-inline-block ml-2 pointer h5">Prywatność</span>
       </li>
 
-      <li class="nav-item text-gray pointer" [routerLink]="['/profile', 'settings']" routerLinkActive="active">
+      <li class="nav-item pointer mr-2 ml-2" [routerLink]="['/profile', 'settings']" routerLinkActive="active">
         <fa-icon [icon]="faWrench" size="lg"></fa-icon>
         <span class="nav-link d-inline-block ml-2 h5">Ustawienia</span>
       </li>

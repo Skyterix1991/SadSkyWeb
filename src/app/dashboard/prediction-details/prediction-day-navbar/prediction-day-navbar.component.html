@@ -1,11 +1,12 @@
-<nav class="navbar navbar-dashboard w-100 navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-dashboard w-100 navbar-expand-lg navbar-light bg-light rounded">
   <button (click)="onMenuToggle()" class="navbar-toggler text-black-50 ml-auto" type="button">
     <fa-icon [icon]="menuToggleIcon" size="lg"></fa-icon>
   </button>
 
   <div class="collapse navbar-collapse" #menuRef>
     <ul class="navbar-nav">
-      <li *ngFor="let day of days" [routerLink]="['day', day]" routerLinkActive="active" class="nav-item text-center">
+      <li *ngFor="let day of days" [routerLink]="['day', day]" routerLinkActive="active"
+          class="nav-item text-center">
         <a class="nav-link text-gray h5 pointer m-0 font-weight-normal pl-4 pr-4">Dzień {{ day }}</a>
       </li>
     </ul>

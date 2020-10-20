@@ -1,7 +1,7 @@
 export const ANXIETY_TITLES: string[] = [
   'Brak zespołu lęków uogólnionych',
-  'Depresja',
-  'Zaawansowana depresja'
+  'Zespół lęków uogólnionych',
+  'Zaawansowany zespół lęków uogulnionych'
 ];
 
 export const ANXIETY_DESCRIPTIONS: string[] = [
@@ -50,9 +50,9 @@ export class ResultUtils {
     switch (anxietyResult) {
       case 'NEGATIVE':
         return ANXIETY_TITLES[0];
-      case 'MILD_DEPRESSION':
+      case 'MILD_ANXIETY':
         return ANXIETY_TITLES[1];
-      case 'SEVERE_DEPRESSION':
+      case 'SEVERE_ANXIETY':
         return ANXIETY_TITLES[2];
     }
   }
@@ -61,9 +61,9 @@ export class ResultUtils {
     switch (anxietyResult) {
       case 'NEGATIVE':
         return ANXIETY_DESCRIPTIONS[0];
-      case 'MILD_DEPRESSION':
+      case 'MILD_ANXIETY':
         return ANXIETY_DESCRIPTIONS[1];
-      case 'SEVERE_DEPRESSION':
+      case 'SEVERE_ANXIETY':
         return ANXIETY_DESCRIPTIONS[2];
     }
   }

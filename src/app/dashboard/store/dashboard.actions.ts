@@ -1,6 +1,5 @@
 import {Action} from '@ngrx/store';
 import {Prediction} from '../../shared/model/prediction.model';
-import {User} from '../../shared/model/user.model';
 
 export const CLEAR_ERROR_MESSAGE = '[Dashboard] Clear error message';
 export const GET_USER_PREDICTIONS_START = '[Dashboard] Get user predictions start';
@@ -31,7 +30,7 @@ export class GeneratePredictionResultSuccess implements Action {
 export class GeneratePredictionResultStart implements Action {
   readonly type = GENERATE_PREDICTION_RESULT_START;
 
-  constructor(public user: User, public prediction: Prediction) {
+  constructor(public userId: string, public predictionId: string) {
   }
 }
 
@@ -45,7 +44,7 @@ export class GeneratePredictionResultFail implements Action {
 export class ReplacePredictionDayEmotionsStart implements Action {
   readonly type = REPLACE_PREDICTION_DAY_EMOTIONS_START;
 
-  constructor(public prediction: Prediction, public emotions: string[]) {
+  constructor(public userId: string, public predictionId: string, public emotions: string[]) {
   }
 }
 

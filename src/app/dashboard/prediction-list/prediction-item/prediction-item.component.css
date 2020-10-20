@@ -2,10 +2,13 @@
   min-height: 62px;
   line-height: 31px;
   user-select: none;
-  background: linear-gradient(to right, white 50%, #0275d8 50%) left bottom;
+  background: linear-gradient(to right, #f8f9fa 50%, #0275d8 50%) left bottom;
   background-size: 202% 100%;
   background-position-x: -1px;
   transition: all .4s ease;
+  border: none;
+  border-top-right-radius: .25rem;
+  border-bottom-right-radius: .25rem;
 }
 
 .prediction.active {
@@ -20,6 +23,11 @@
   line-height: 36px;
   border-radius: 100%;
   text-align: center;
+}
+
+.prediction .date {
+  position: absolute;
+  top: 19px;
 }
 
 .prediction .icon.bg-green {

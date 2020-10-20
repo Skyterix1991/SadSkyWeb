@@ -29,8 +29,16 @@ const routes: Routes = [
           {
             path: 'day/:dayNumber',
             component: PredictionDayComponent
+          },
+          {
+            path: '**',
+            redirectTo: 'day/1'
           }
         ]
+      },
+      {
+        path: '**',
+        redirectTo: ''
       }
     ]
   }

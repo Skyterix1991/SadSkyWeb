@@ -66,7 +66,7 @@ export class PredictionDayPartEditComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    this.store.dispatch(new ReplacePredictionDayEmotionsStart(this.selectedPrediction, [...this.selectedEmotions]));
+    this.store.dispatch(new ReplacePredictionDayEmotionsStart(this.selectedPrediction.owner.userId, this.selectedPrediction.predictionId, [...this.selectedEmotions]));
   }
 
   private createEditEmotionsForm(): void {

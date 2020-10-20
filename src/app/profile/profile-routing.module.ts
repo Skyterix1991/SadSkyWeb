@@ -27,6 +27,10 @@ const routes: Routes = [
       {
         path: 'privacy',
         component: ProfilePrivacyComponent
+      },
+      {
+        path: '**',
+        redirectTo: 'details'
       }
     ]
   }

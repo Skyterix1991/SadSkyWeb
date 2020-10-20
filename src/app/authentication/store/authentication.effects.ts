@@ -47,8 +47,8 @@ export class AuthenticationEffects {
         }),
         catchError(error => {
           switch (error.status) {
-            case 403:
-              return of(new AuthenticationFailed('Podane hasło jest nieprawidłowe.'));
+            case 400:
+              return of(new AuthenticationFailed('Podane dane są nieprawidłowe.'));
             default:
               return of(new AuthenticationFailed('Coś poszło nie tak. Spróbuj ponownie później.'));
           }
@@ -78,6 +78,8 @@ export class AuthenticationEffects {
           switch (error.status) {
             case 403:
               return of(new AuthenticationFailed('Podane hasło jest nieprawidłowe.'));
+            case 400:
+              return of(new AuthenticationFailed('Podane dane są nieprawidłowe.'));
             default:
               return of(new AuthenticationFailed('Coś poszło nie tak. Spróbuj ponownie później.'));
           }

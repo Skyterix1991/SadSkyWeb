@@ -41,9 +41,9 @@ export class DashboardEffects {
     switchMap((state: GeneratePredictionResultStart) => {
       return this.httpClient.post(
         GET_USER_URL +
-        state.prediction.owner.userId +
+        state.userId +
         GET_USER_PREDICTION_URI +
-        state.prediction.predictionId +
+        state.predictionId +
         GENERATE_PREDICTION_RESULT_URI, {}).pipe(
         map(__ => {
           return new GeneratePredictionResultSuccess();
@@ -72,15 +72,15 @@ export class DashboardEffects {
     switchMap((state: ReplacePredictionDayEmotionsStart) => {
       return this.httpClient.put(
         GET_USER_URL +
-        state.prediction.owner.userId +
+        state.userId +
         GET_USER_PREDICTION_URI +
-        state.prediction.predictionId +
+        state.predictionId +
         SET_EMOTIONS_URI,
         {
           emotions: state.emotions
         }).pipe(
         map(__ => {
-          return new ReplacePredictionDayEmotionsSuccess(state.prediction.owner.userId, state.prediction.predictionId);
+          return new ReplacePredictionDayEmotionsSuccess(state.userId, state.predictionId);
         }),
         catchError(error => {
           switch (error.status) {
@@ -132,10 +132,8 @@ export class DashboardEffects {
   generatePredictionResultSuccess = this.actions$.pipe(
     ofType(GENERATE_PREDICTION_RESULT_SUCCESS),
     tap(__ => {
-      console.log('success');
       setTimeout(() => {
         this.predictionResultService.predictionResultGeneratedEvent.emit();
-
       });
     })
   );

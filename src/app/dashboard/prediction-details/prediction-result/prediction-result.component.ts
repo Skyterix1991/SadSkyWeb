@@ -53,6 +53,7 @@ export class PredictionResultComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.authenticationStoreSubscription.unsubscribe();
     this.predictionStoreSubscription.unsubscribe();
     this.predictionResultGeneratedSubscription.unsubscribe();
   }
@@ -101,6 +102,6 @@ export class PredictionResultComponent implements OnInit, OnDestroy {
   }
 
   onResultGenerate(): void {
-    this.store.dispatch(new GeneratePredictionResultStart(this.user, this.selectedPrediction));
+    this.store.dispatch(new GeneratePredictionResultStart(this.user.userId, this.selectedPrediction.predictionId));
   }
 }

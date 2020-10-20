@@ -17,12 +17,12 @@
         <p class="text-left">{{ anxietyResultDescription }}</p>
       </div>
       <!-- Emotions -->
-      <div class="text-left p-5">
+      <div class="text-left pl-5 pr-5">
         <p class="h3">Emocje</p>
         <ul class="emotions p-0">
           <li *ngFor="let emotion of uniqueEmotions; let index = index"
-              class="shadow-sm rounded-pill mt-1 p-1 pr-3 pl-3 mr-2 pointer">{{ emotionCounts[index] }}
-            x {{ emotion | emotionTranslate | titlecase }}</li>
+              class="shadow-sm rounded-pill mt-1 p-1 pr-3 pl-3 mr-2 pointer">{{ emotionCounts[index] + 'x' }}
+            {{ emotion | emotionTranslate | titlecase }}</li>
         </ul>
       </div>
     </div>

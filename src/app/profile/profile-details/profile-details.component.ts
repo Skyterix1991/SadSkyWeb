@@ -80,7 +80,9 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
     const month: number = +this.profileDetailsForm.controls.month.value;
     const year: number = +this.profileDetailsForm.controls.year.value;
 
-    this.store.dispatch(new UpdateProfileDetailsStart(this.user.userId, firstName, lastName, [year, month, day]));
+    const birthday = [year, month, day];
+
+    this.store.dispatch(new UpdateProfileDetailsStart(this.user.userId, firstName, lastName, birthday));
   }
 
   private createUpdateProfileDetailsForm(): void {
@@ -113,5 +115,12 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
       month: new FormControl(month, [Validators.required]),
       year: new FormControl(year, [Validators.required]),
     });
+  }
+
+  private countYearsFromDate(birthday): number {
+    const ageDifMs = new Date().getTime() - birthday.getTime();
+    const ageDate = new Date(ageDifMs);
+
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
 }

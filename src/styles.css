@@ -41,15 +41,15 @@ body.modal-open {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #ccc;
+  background: #e5e5e5;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: gray;
+  background: #cccccc;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #3c3c3c;
+  background: #b2b2b2;
 }

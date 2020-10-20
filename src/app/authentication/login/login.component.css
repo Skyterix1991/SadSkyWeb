@@ -4,6 +4,7 @@
   height: 100%;
   text-align: center;
   z-index: 1050;
+  margin-top: -5vh;
 }
 
 .login-modal .content .header {
@@ -28,7 +29,7 @@
   width: 75vw;
   max-width: 350px;
   min-height: 450px;
-  max-height: 75vh;
+  max-height: 90vh;
   background: #fff;
 }
 

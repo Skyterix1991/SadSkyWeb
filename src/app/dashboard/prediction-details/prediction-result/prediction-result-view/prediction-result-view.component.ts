@@ -52,7 +52,9 @@ export class PredictionResultViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.predictionStoreSubscription.unsubscribe();
+    if (!!this.predictionStoreSubscription) {
+      this.predictionStoreSubscription.unsubscribe();
+    }
 
     this.document.body.classList.remove('modal-open');
   }
