@@ -101,14 +101,16 @@ export class PredictionDayPartComponent implements OnInit {
 
 
     // Start time offset of hours when day part starts
-    const startTimeOffsetInMilliseconds = (this.wakeHour + DAY_PART_HOURS * this.dayPartNumber) * 60 * 60 * 1000;
+    const startTimeOffsetInMilliseconds =
+      (this.wakeHour + DAY_PART_HOURS * this.dayPartNumber) * 60 * 60 * 1000 - 3600 * 1000;
 
     // Time start when edit is allowed
     const start = new Date(currentDateOfExpireDate.getTime() + startTimeOffsetInMilliseconds);
 
 
     // End time offset of hours when day part ends
-    const endTimeOffsetInMilliseconds = (this.wakeHour + DAY_PART_HOURS * this.dayPartNumber + DAY_PART_HOURS) * 60 * 60 * 1000;
+    const endTimeOffsetInMilliseconds =
+      (this.wakeHour + DAY_PART_HOURS * this.dayPartNumber + DAY_PART_HOURS) * 60 * 60 * 1000 - 3600 * 1000;
 
     // Deadline for editing
     const end = new Date(currentDateOfExpireDate.getTime() + endTimeOffsetInMilliseconds);
