@@ -1,0 +1,10 @@
+<section class="text-center d-block">
+  <p class="display-3 mt-5">Zaproszenia</p>
+  <!-- Error Message -->
+  <div *ngIf="!!errorMessage" class="alert alert-danger d-inline-block p-2 mb-4 text-center mt-3 mb-3">
+    {{ errorMessage }}
+  </div>
+
+  <app-profile-invites-sent-invites></app-profile-invites-sent-invites>
+  <app-profile-invites-pending-invites></app-profile-invites-pending-invites>
+</section>

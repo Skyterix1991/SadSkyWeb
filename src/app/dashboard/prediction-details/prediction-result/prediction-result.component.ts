@@ -20,10 +20,14 @@ export class PredictionResultComponent implements OnInit, OnDestroy {
   faClipboard = faClipboardList;
 
   selectedPrediction: Prediction;
-  user: User;
+  selectedUser: User;
   errorMessage: string;
 
   canGeneratePrediction: boolean;
+
+  isSelectedUserCurrentUser: boolean;
+
+  private currentUser: User;
 
   authenticationStoreSubscription: Subscription;
   predictionStoreSubscription: Subscription;
@@ -35,11 +39,14 @@ export class PredictionResultComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.authenticationStoreSubscription = this.store.select('authentication').subscribe(state => {
-      this.user = state.user;
+      this.currentUser = state.user;
     });
     this.predictionStoreSubscription = this.store.select('dashboard').subscribe(state => {
       this.selectedPrediction = state.selectedPrediction;
       this.errorMessage = state.predictionErrorMessage;
+      this.selectedUser = state.selectedUser;
+
+      this.isSelectedUserCurrentUser = this.selectedUser.userId === this.currentUser.userId;
 
       if (!!this.selectedPrediction && !this.selectedPrediction.depressionResult) {
         this.canGeneratePrediction = this.canGeneratePredictionResult();
@@ -47,8 +54,8 @@ export class PredictionResultComponent implements OnInit, OnDestroy {
     });
 
     this.predictionResultGeneratedSubscription = this.predictionResultService.predictionResultGeneratedEvent.subscribe(__ => {
-      this.store.dispatch(new GetUserPredictionStart(this.user.userId, this.selectedPrediction.predictionId));
-      this.store.dispatch(new GetUserPredictionsStart(this.user.userId));
+      this.store.dispatch(new GetUserPredictionStart(this.selectedUser.userId, this.selectedPrediction.predictionId));
+      this.store.dispatch(new GetUserPredictionsStart(this.selectedUser.userId));
     });
   }
 
@@ -83,7 +90,7 @@ export class PredictionResultComponent implements OnInit, OnDestroy {
 
     const currentHour = currentTime.getHours();
     // Calculate last emotion deadline for last day
-    const lastEmotionsDeadline = this.user.wakeHour + DAY_PART_HOURS;
+    const lastEmotionsDeadline = this.selectedUser.wakeHour + DAY_PART_HOURS;
 
     // Set time to start of current day
     const startOfToday = currentTime;
@@ -102,6 +109,6 @@ export class PredictionResultComponent implements OnInit, OnDestroy {
   }
 
   onResultGenerate(): void {
-    this.store.dispatch(new GeneratePredictionResultStart(this.user.userId, this.selectedPrediction.predictionId));
+    this.store.dispatch(new GeneratePredictionResultStart(this.selectedUser.userId, this.selectedPrediction.predictionId));
   }
 }

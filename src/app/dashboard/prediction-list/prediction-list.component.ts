@@ -19,31 +19,26 @@ export class PredictionListComponent implements OnInit, OnDestroy {
 
   faCircleNotch = faCircleNotch;
 
-  authenticationStoreSubscription: Subscription;
   predictionStoreSubscription: Subscription;
 
-  private user: User;
+  private selectedUser: User;
 
   constructor(private store: Store<fromApp.AppState>) {
   }
 
   ngOnInit(): void {
     this.store.dispatch(new ClearErrorMessage());
-    this.authenticationStoreSubscription = this.store.select('authentication').subscribe(state => {
-      this.user = state.user;
-    });
     this.predictionStoreSubscription = this.store.select('dashboard').subscribe(state => {
       this.predictions = state.predictions;
-
+      this.selectedUser = state.selectedUser;
       this.isFetching = state.arePredictionsFetching;
     });
 
-    this.store.dispatch(new GetUserPredictionsStart(this.user.userId));
+    this.store.dispatch(new GetUserPredictionsStart(this.selectedUser.userId));
   }
 
   ngOnDestroy(): void {
     this.predictionStoreSubscription.unsubscribe();
-    this.authenticationStoreSubscription.unsubscribe();
   }
 
 }

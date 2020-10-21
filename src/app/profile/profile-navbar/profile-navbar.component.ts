@@ -5,6 +5,8 @@ import {faArrowLeft} from '@fortawesome/free-solid-svg-icons/faArrowLeft';
 import {faWrench} from '@fortawesome/free-solid-svg-icons/faWrench';
 import {faBars} from '@fortawesome/free-solid-svg-icons/faBars';
 import {faTimes} from '@fortawesome/free-solid-svg-icons/faTimes';
+import {faUsers} from '@fortawesome/free-solid-svg-icons/faUsers';
+import {faEnvelope} from '@fortawesome/free-solid-svg-icons/faEnvelope';
 
 @Component({
   selector: 'app-profile-navbar',
@@ -23,6 +25,8 @@ export class ProfileNavbarComponent implements OnInit {
   faKey = faKey;
   faUser = faUser;
   faWrench = faWrench;
+  faUsers = faUsers;
+  faEnvelope = faEnvelope;
 
   constructor(private renderer: Renderer2) {
   }

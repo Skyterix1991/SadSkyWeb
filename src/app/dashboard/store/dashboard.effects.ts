@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {catchError, map, switchMap, tap} from 'rxjs/operators';
 import {
   GENERATE_PREDICTION_RESULT_URI,
+  GET_USER_FRIENDS_TO_URI,
   GET_USER_PREDICTION_URI,
   GET_USER_PREDICTIONS_URI,
   GET_USER_URL,
@@ -15,8 +16,12 @@ import {
   GENERATE_PREDICTION_RESULT_SUCCESS,
   GeneratePredictionResultStart,
   GeneratePredictionResultSuccess,
+  GET_USER_FRIENDS_TO_START,
   GET_USER_PREDICTION_START,
   GET_USER_PREDICTIONS_START,
+  GetUserFriendsToFail,
+  GetUserFriendsToStart,
+  GetUserFriendsToSuccess,
   GetUserPredictionFail,
   GetUserPredictionsFail,
   GetUserPredictionsStart,
@@ -31,9 +36,28 @@ import {
 } from './dashboard.actions';
 import {Prediction} from '../../shared/model/prediction.model';
 import {PredictionResultService} from '../prediction-details/prediction-result.service';
+import {User} from '../../shared/model/user.model';
 
 @Injectable()
 export class DashboardEffects {
+
+  @Effect()
+  getUserFriendsToStart = this.actions$.pipe(
+    ofType(GET_USER_FRIENDS_TO_START),
+    switchMap((state: GetUserFriendsToStart) => {
+      return this.httpClient.get<User[]>(GET_USER_URL + state.userId + GET_USER_FRIENDS_TO_URI).pipe(
+        map((users: User[]) => {
+          return new GetUserFriendsToSuccess(users);
+        }),
+        catchError(error => {
+          switch (error.status) {
+            default:
+              return of(new GetUserFriendsToFail('Coś poszło nie tak. Spróbuj ponownie później.'));
+          }
+        })
+      );
+    })
+  );
 
   @Effect()
   generatePredictionResultStart = this.actions$.pipe(

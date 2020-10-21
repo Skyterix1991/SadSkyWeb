@@ -21,24 +21,20 @@ export class PredictionDetailsComponent implements OnInit, OnDestroy {
   selectedPrediction: Prediction;
 
   predictionStoreSubscription: Subscription;
-  authenticationStoreSubscription: Subscription;
 
-  private user: User;
+  private selectedUser: User;
 
   constructor(private store: Store<fromApp.AppState>, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.authenticationStoreSubscription = this.store.select('authentication').subscribe(state => {
-      this.user = state.user;
-    });
     this.predictionStoreSubscription = this.store.select('dashboard').subscribe(state => {
       this.selectedPrediction = state.selectedPrediction;
       this.isFetching = state.isPredictionFetching;
+      this.selectedUser = state.selectedUser;
     });
 
-    this.store.dispatch(new GetUserPredictionStart(this.user.userId, this.activatedRoute.snapshot.params.predictionId));
-
+    this.store.dispatch(new GetUserPredictionStart(this.selectedUser.userId, this.activatedRoute.snapshot.params.predictionId));
   }
 
   ngOnDestroy(): void {

@@ -5,21 +5,21 @@ export const ANXIETY_TITLES: string[] = [
 ];
 
 export const ANXIETY_DESCRIPTIONS: string[] = [
-  'Emocje które towarzyszyły ci przez ostatni tydzień nie wskazują na zaburzenie psychiczne lęków uogulnionych, NIE oznacza to jednak że wcale ich nie ma.\n Jeżeli posiadasz podejrzenie że możesz cierpieć na zaburzenia lękowe skontaktuj się z psychologiem aby potwierdzić swoje przypuszczenia.',
-  'Emocje które towarzyszyły ci przez ostatni tydzień wskazują na zaburzenia lękowe, NIE jest to jednak diagnozą.\nZalecamy kontakt z psychologiem w celu potwierdzenia rezultatu i rozpoczęcia ewentualnej terapii.',
-  'Emocje które towarzyszyły ci przez ostatni tydzień wskazują na ciężkie zaburzenia lękowe, NIE jest to jednak diagnozą.\nZalecamy kontakt z psychologiem w celu potwierdzenia rezultatu i rozpoczęcia ewentualnej terapii.'
+  'Z przyjemnością i spokojem informujemy że nie zarejestrowano żadnych zaburzeń psychicznych! Jeżeli wynik testu zmartwił cię lub nadal nie jesteś pewien rezultatu, koniecznie nawiąż kontakt ze specjalistą.',
+  'Samopoczucie jakie przez ostatni tydzień udało się nam zaobserwować są wystarczającą podstawą aby sądzić że osoba badana cierpi na Zespół Lęków Uogulnionych.',
+  'Zaobserwowany w ostatnim czasie nastrój, obawy i lęki mogą wskazywać na zaawansowany zespół lęków uogólnionych.'
 ];
 
 export const DEPRESSION_TITLES: string[] = [
   'Brak depresji',
   'Depresja',
-  'Zaawansowana depresja'
+  'Ciężka depresja'
 ];
 
 export const DEPRESSION_DESCRIPTIONS: string[] = [
-  'Na podstawie twoich emocji które wypełniałeś przez ostatni tydzień nie stwierdziliśmy u ciebie depresji, NIE oznacza to jednak że wcale jej nie ma.\nJeżeli posiadasz podejrzenie że możesz cierpieć na depresję skontaktuj się z psychologiem aby potwierdzić twoje przypuszczenia.',
-  'Na podstawie twoich emocji które wypełniałeś przez ostatni tydzień nasz system zakwalifikował cię jak chorego na depresję, NIE jest to jednak diagnoza.\nZalecamy kontakt z psychologiem w celu potwierdzenia rezultatu i rozpoczęcia ewentualnej terapii.',
-  'Na podstawie twoich emocji które wypełniałeś przez ostatni tydzień nasz system zakwalifikował cię jak chorego na ciężką depresję, NIE jest to jednak diagnoza.\nZalecamy kontakt z psychologiem w celu potwierdzenia rezultatu i rozpoczęcia ewentualnej terapii.'
+  'Z przyjemnością i spokojem informujemy że nie zarejestrowano żadnych zaburzeń psychicznych! Jeżeli wynik testu zmartwił cię lub nadal nie jesteś pewien rezultatu, koniecznie nawiąż kontakt ze specjalistą.',
+  'W oparciu o powtarzające się przez ostatni tydzień dane, dotyczące samopoczucia, które użytkownik regularnie wprowadzał do systemu. Występuje podejrzenie zaburzenia psychicznego: depresji. Zaleca się możliwie jak najszybszy kontakt z profesjonalistą (psychologiem/psychiatrą).',
+  'Informacje jakie na podstawie ankiet wypełnianych przez użytkownika udało się zebrać w minionym tygodniu sugerują wysokie ryzyko zapadnięcia na ciężką depresje.'
 ];
 
 export class ResultUtils {

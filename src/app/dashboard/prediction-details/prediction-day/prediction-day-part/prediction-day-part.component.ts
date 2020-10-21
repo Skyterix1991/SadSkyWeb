@@ -1,17 +1,21 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Day} from '../../../../shared/model/day.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EmotionUtils} from '../../../../shared/config/emotion.constants';
 import {faPlusCircle} from '@fortawesome/free-solid-svg-icons/faPlusCircle';
 import {PredictionDayPartService} from './prediction-day-part.service';
 import {DAY_PART_HOURS} from '../../../../shared/config/day.constants';
+import {User} from '../../../../shared/model/user.model';
+import {Subscription} from 'rxjs';
+import {Store} from '@ngrx/store';
+import * as fromApp from '../../../../store/app.reducer';
 
 @Component({
   selector: 'app-prediction-day-part',
   templateUrl: './prediction-day-part.component.html',
   styleUrls: ['./prediction-day-part.component.css']
 })
-export class PredictionDayPartComponent implements OnInit {
+export class PredictionDayPartComponent implements OnInit, OnDestroy {
 
   faPlus = faPlusCircle;
 
@@ -23,17 +27,32 @@ export class PredictionDayPartComponent implements OnInit {
   isDayPartEditable: boolean;
   private dayPartNumber: number;
 
+  isSelectedUserCurrentUser: boolean;
+
+  private currentUser: User;
+
+  authenticationStoreSubscription: Subscription;
+  predictionStoreSubscription: Subscription;
+
   @Input() private expireDate: number[];
   @Input() private expireDays: number;
   @Input() private wakeHour: number;
   @Input() private day: Day;
 
-  constructor(private activatedRoute: ActivatedRoute,
+  constructor(private store: Store<fromApp.AppState>,
+              private activatedRoute: ActivatedRoute,
               private router: Router,
               private predictionDayPartService: PredictionDayPartService) {
   }
 
   ngOnInit(): void {
+    this.authenticationStoreSubscription = this.store.select('authentication').subscribe(state => {
+      this.currentUser = state.user;
+    });
+    this.predictionStoreSubscription = this.store.select('dashboard').subscribe(state => {
+      this.isSelectedUserCurrentUser = state.selectedUser.userId === this.currentUser.userId;
+    });
+
     this.activatedRoute.queryParams.subscribe(queryParams => {
       this.dayPartQueryParam = queryParams.dayPart;
 
@@ -49,6 +68,11 @@ export class PredictionDayPartComponent implements OnInit {
         });
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.predictionStoreSubscription.unsubscribe();
+    this.authenticationStoreSubscription.unsubscribe();
   }
 
   private updateEmotionList(): void {

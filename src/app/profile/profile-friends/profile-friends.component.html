@@ -1,0 +1,11 @@
+<section class="text-center d-block">
+  <p class="display-3 d-inline-block mt-5">Znajomi</p>
+  <!-- Error Message -->
+  <div *ngIf="!!errorMessage" class="alert alert-danger p-2 mb-4 text-center">
+    {{ errorMessage }}
+  </div>
+
+  <app-profile-friends-friends-to></app-profile-friends-friends-to>
+  <app-profile-friends-friends></app-profile-friends-friends>
+
+</section>

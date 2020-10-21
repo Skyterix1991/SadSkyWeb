@@ -5,6 +5,9 @@ import {
   GENERATE_PREDICTION_RESULT_FAIL,
   GENERATE_PREDICTION_RESULT_START,
   GENERATE_PREDICTION_RESULT_SUCCESS,
+  GET_USER_FRIENDS_TO_FAIL,
+  GET_USER_FRIENDS_TO_START,
+  GET_USER_FRIENDS_TO_SUCCESS,
   GET_USER_PREDICTION_FAIL,
   GET_USER_PREDICTION_START,
   GET_USER_PREDICTIONS_FAIL,
@@ -13,9 +16,11 @@ import {
   REPLACE_PREDICTION_DAY_EMOTIONS_FAIL,
   REPLACE_PREDICTION_DAY_EMOTIONS_START,
   REPLACE_PREDICTION_DAY_EMOTIONS_SUCCESS,
-  SELECT_PREDICTION
+  SELECT_PREDICTION,
+  SELECT_USER
 } from './dashboard.actions';
 import {Prediction} from '../../shared/model/prediction.model';
+import {User} from '../../shared/model/user.model';
 
 export interface State {
   predictionErrorMessage: string;
@@ -26,6 +31,8 @@ export interface State {
   isPredictionFetching: boolean;
   predictions: Prediction[];
   selectedPrediction: Prediction;
+  selectedUser: User;
+  userFriendsTo: User[];
 }
 
 const initialState: State = {
@@ -36,7 +43,9 @@ const initialState: State = {
   arePredictionsFetching: false,
   isPredictionFetching: false,
   predictions: [],
-  selectedPrediction: null
+  selectedPrediction: null,
+  selectedUser: null,
+  userFriendsTo: []
 };
 
 export function dashboardReducer(state = initialState, action: DashboardActions): State {
@@ -93,6 +102,11 @@ export function dashboardReducer(state = initialState, action: DashboardActions)
         isPredictionFetching: true,
         selectedPrediction: null
       };
+    case SELECT_USER:
+      return {
+        ...state,
+        selectedUser: action.user
+      };
     case SELECT_PREDICTION:
       return {
         ...state,
@@ -124,6 +138,21 @@ export function dashboardReducer(state = initialState, action: DashboardActions)
         replaceEmotionsErrorMessage: null,
         predictionsErrorMessage: null,
         dayPartEmotionsEditErrorMessage: null
+      };
+    case GET_USER_FRIENDS_TO_START:
+      return {
+        ...state,
+        userFriendsTo: []
+      };
+    case GET_USER_FRIENDS_TO_SUCCESS:
+      return {
+        ...state,
+        userFriendsTo: action.userFriendsTo
+      };
+    case GET_USER_FRIENDS_TO_FAIL:
+      return {
+        ...state,
+        predictionsErrorMessage: action.errorMessage
       };
     default:
       return state;

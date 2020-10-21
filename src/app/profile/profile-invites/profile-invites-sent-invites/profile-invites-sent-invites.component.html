@@ -1,0 +1,32 @@
+<section class="d-block">
+  <!-- Sent invites -->
+  <h2 class="h2 pt-3">Wysłane zaproszenia</h2>
+  <p class="font-weight-light mt-4" *ngIf="sentInvites.length == 0">Brak</p>
+  <form [formGroup]="profileSentInvitesForm" class="text-left d-inline-block mt-2">
+    <div class="form-group">
+      <!-- Spinner -->
+      <div *ngIf="isUserSentInvitesFetching" class="spinner text-center p-3">
+        <fa-icon size="3x" [icon]="faCircleNotch" spin="true"></fa-icon>
+      </div>
+      <!-- User sent invites list -->
+      <ul *ngIf="!isUserSentInvitesFetching" class="list-group">
+        <li *ngFor="let sentInviteUser of sentInvites" class="list-group-item">
+          {{ sentInviteUser.firstName + ' ' + sentInviteUser.lastName }}
+          <fa-icon class="float-right text-gray pointer" (click)="onSentInviteCancel(sentInviteUser)" [icon]="faTimes"
+                   size="sm"></fa-icon>
+        </li>
+      </ul>
+      <!-- Friend uuid input -->
+      <input type="text" class="form-control mt-3" formControlName="friendId" placeholder="Identyfikator użytkownika"/>
+
+      <button (click)="onSentUserInvite()"
+              [disabled]="!profileSentInvitesForm.valid || isFetching || !profileSentInvitesForm.touched"
+              class="btn btn-primary btn-lg btn-block p-2 mt-2" type="submit">
+        <span *ngIf="!isFetching">Wyślij</span>
+        <fa-icon *ngIf="isFetching" [fixedWidth]="true" [icon]="faCircleNotch" class="text-white"
+                 size="sm"
+                 spin="true"></fa-icon>
+      </button>
+    </div>
+  </form>
+</section>

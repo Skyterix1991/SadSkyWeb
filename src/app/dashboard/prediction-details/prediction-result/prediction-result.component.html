@@ -1,4 +1,5 @@
-<section *ngIf="!!selectedPrediction.depressionResult || canGeneratePrediction" class="container-fluid text-left pt-2">
+<section *ngIf="(!!selectedPrediction.depressionResult || canGeneratePrediction) && isSelectedUserCurrentUser"
+         class="container-fluid text-left pt-2">
   <div class="result-name mt-3">
     <div *ngIf="!!errorMessage" class="alert alert-danger p-2 mb-4">
       {{ errorMessage }}

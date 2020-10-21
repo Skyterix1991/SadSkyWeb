@@ -1,5 +1,6 @@
 import {Action} from '@ngrx/store';
 import {Prediction} from '../../shared/model/prediction.model';
+import {User} from '../../shared/model/user.model';
 
 export const CLEAR_ERROR_MESSAGE = '[Dashboard] Clear error message';
 export const GET_USER_PREDICTIONS_START = '[Dashboard] Get user predictions start';
@@ -17,8 +18,34 @@ export const GENERATE_PREDICTION_RESULT_START = '[Dashboard] Generate prediction
 export const GENERATE_PREDICTION_RESULT_FAIL = '[Dashboard] Generate prediction result fail';
 export const GENERATE_PREDICTION_RESULT_SUCCESS = '[Dashboard] Generate prediction result success';
 
+export const SELECT_USER = '[Dashboard] Select user';
 export const SELECT_PREDICTION = '[Dashboard] Select prediction';
 export const CLEAR_SELECTED_PREDICTION = '[Dashboard] Clear selected prediction';
+
+export const GET_USER_FRIENDS_TO_START = '[Dashboard] Get user friends to start';
+export const GET_USER_FRIENDS_TO_SUCCESS = '[Dashboard] Get user friends to success';
+export const GET_USER_FRIENDS_TO_FAIL = '[Dashboard] Get user friends to fail';
+
+export class GetUserFriendsToFail implements Action {
+  readonly type = GET_USER_FRIENDS_TO_FAIL;
+
+  constructor(public errorMessage: string) {
+  }
+}
+
+export class GetUserFriendsToSuccess implements Action {
+  readonly type = GET_USER_FRIENDS_TO_SUCCESS;
+
+  constructor(public userFriendsTo: User[]) {
+  }
+}
+
+export class GetUserFriendsToStart implements Action {
+  readonly type = GET_USER_FRIENDS_TO_START;
+
+  constructor(public userId: string) {
+  }
+}
 
 export class GeneratePredictionResultSuccess implements Action {
   readonly type = GENERATE_PREDICTION_RESULT_SUCCESS;
@@ -84,6 +111,13 @@ export class GetUserPredictionFail implements Action {
   }
 }
 
+export class SelectUser implements Action {
+  readonly type = SELECT_USER;
+
+  constructor(public user: User) {
+  }
+}
+
 export class SelectPrediction implements Action {
   readonly type = SELECT_PREDICTION;
 
@@ -133,4 +167,8 @@ export type DashboardActions =
   ReplacePredictionDayEmotionsSuccess |
   GeneratePredictionResultFail |
   GeneratePredictionResultStart |
-  GeneratePredictionResultSuccess;
+  GeneratePredictionResultSuccess |
+  SelectUser |
+  GetUserFriendsToStart |
+  GetUserFriendsToFail |
+  GetUserFriendsToSuccess;
