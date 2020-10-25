@@ -11,7 +11,7 @@ import {Subscription} from 'rxjs';
 export class ProfileInvitesComponent implements OnInit, OnDestroy {
 
   errorMessage: string;
-  profileStoreSubscription: Subscription;
+  private profileStoreSubscription: Subscription;
 
   constructor(private store: Store<fromApp.AppState>) {
   }

@@ -37,3 +37,7 @@
 .prediction .icon.bg-gray {
   background: #9e9e9e;
 }
+
+.prediction .icon.bg-red {
+  background: #cc0000;
+}

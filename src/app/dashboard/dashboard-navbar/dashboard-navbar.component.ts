@@ -6,8 +6,9 @@ import {User} from '../../shared/model/user.model';
 import {Logout} from '../../authentication/store/authentication.actions';
 import {faBars} from '@fortawesome/free-solid-svg-icons/faBars';
 import {faTimes} from '@fortawesome/free-solid-svg-icons/faTimes';
-import {ClearSelectedPrediction, GetUserFriendsToStart, GetUserPredictionsStart, SelectUser} from '../store/dashboard.actions';
-import {Router} from '@angular/router';
+import {ClearSelectedPrediction, GetUserFriendsToStart, SelectUserStart, SelectUserSuccess} from '../store/dashboard.actions';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard-navbar',
@@ -26,11 +27,15 @@ export class DashboardNavbarComponent implements OnInit, OnDestroy {
   currentUser: User;
   private selectedUser: User;
 
-  authenticationStoreSubscription: Subscription;
-  dashboardStoreSubscription: Subscription;
+  usersForm: FormGroup;
+
+  private authenticationStoreSubscription: Subscription;
+  private dashboardStoreSubscription: Subscription;
 
   constructor(private store: Store<fromApp.AppState>,
-              private renderer: Renderer2, private router: Router) {
+              private renderer: Renderer2,
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -43,7 +48,14 @@ export class DashboardNavbarComponent implements OnInit, OnDestroy {
     });
 
     this.store.dispatch(new GetUserFriendsToStart(this.currentUser.userId));
-    this.store.dispatch(new SelectUser(this.currentUser));
+
+    if (!!this.activatedRoute.snapshot.params.userId && this.activatedRoute.snapshot.params.userId !== this.currentUser.userId) {
+      this.store.dispatch(new SelectUserStart(this.activatedRoute.snapshot.params.userId));
+    } else {
+      this.store.dispatch(new SelectUserSuccess(this.currentUser));
+    }
+
+    this.createUsersForm();
   }
 
   ngOnDestroy(): void {
@@ -52,8 +64,8 @@ export class DashboardNavbarComponent implements OnInit, OnDestroy {
   }
 
   onLogout(): void {
-    this.store.dispatch(new Logout());
     this.store.dispatch(new ClearSelectedPrediction());
+    this.store.dispatch(new Logout());
   }
 
   onMenuToggle(): void {
@@ -68,15 +80,39 @@ export class DashboardNavbarComponent implements OnInit, OnDestroy {
     this.isMenuOpened = !this.isMenuOpened;
   }
 
-  selectUser(user: User): void {
+  selectUser(): void {
+    const userId = this.usersForm.controls.users.value;
+    if (!userId) {
+      return;
+    }
+
+    let user: User;
+
+    if (userId === this.currentUser.userId) {
+      user = this.currentUser;
+    } else {
+      user = this.userFriendsTo.find(userFriendTo => userId === userFriendTo.userId);
+    }
+
     if (this.selectedUser.userId === user.userId) {
       return;
     }
 
-    this.store.dispatch(new SelectUser(user));
-    this.store.dispatch(new GetUserPredictionsStart(user.userId));
+    this.store.dispatch(new SelectUserSuccess(user));
     this.store.dispatch(new ClearSelectedPrediction());
 
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/dashboard', user.userId]);
+  }
+
+  private createUsersForm(): void {
+    let userId = this.activatedRoute.snapshot.params.userId;
+
+    if (!userId) {
+      userId = this.currentUser.userId;
+    }
+
+    this.usersForm = new FormGroup({
+      users: new FormControl(userId, [Validators.required])
+    });
   }
 }

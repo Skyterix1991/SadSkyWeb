@@ -27,8 +27,8 @@ export class ProfileInvitesPendingInvitesComponent implements OnInit, OnDestroy 
   private currentUser: User;
   pendingInvites: User[];
 
-  profileStoreSubscription: Subscription;
-  authenticationStoreSubscription: Subscription;
+  private profileStoreSubscription: Subscription;
+  private authenticationStoreSubscription: Subscription;
 
   constructor(private store: Store<fromApp.AppState>) {
   }

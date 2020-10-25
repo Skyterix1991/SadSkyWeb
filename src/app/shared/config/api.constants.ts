@@ -1,5 +1,5 @@
-export const DOMAIN = 'http://192.168.0.11:8080';
-export const DEFAULT_PATH = '/sadsky-ws/';
+export const DOMAIN = 'https://sadsky.azurewebsites.net';
+export const DEFAULT_PATH = '/';
 
 export const REGISTER_URL = DOMAIN + DEFAULT_PATH + 'users';
 export const LOGIN_URL = DOMAIN + DEFAULT_PATH + 'users/login';

@@ -6,6 +6,7 @@ import {Subscription} from 'rxjs';
 import {ClearErrorMessage, GetUserPredictionsStart} from '../store/dashboard.actions';
 import {User} from '../../shared/model/user.model';
 import {faCircleNotch} from '@fortawesome/free-solid-svg-icons/faCircleNotch';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-prediction-list',
@@ -19,22 +20,28 @@ export class PredictionListComponent implements OnInit, OnDestroy {
 
   faCircleNotch = faCircleNotch;
 
-  predictionStoreSubscription: Subscription;
-
   private selectedUser: User;
 
-  constructor(private store: Store<fromApp.AppState>) {
+  private predictionStoreSubscription: Subscription;
+
+  constructor(private store: Store<fromApp.AppState>, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.store.dispatch(new ClearErrorMessage());
     this.predictionStoreSubscription = this.store.select('dashboard').subscribe(state => {
+      if (!!state.selectedUser && this.selectedUser !== state.selectedUser) {
+        this.store.dispatch(new GetUserPredictionsStart(state.selectedUser.userId));
+      }
+
       this.predictions = state.predictions;
       this.selectedUser = state.selectedUser;
       this.isFetching = state.arePredictionsFetching;
     });
 
-    this.store.dispatch(new GetUserPredictionsStart(this.selectedUser.userId));
+    if (!!this.activatedRoute.snapshot.params.userId) {
+      this.store.dispatch(new GetUserPredictionsStart(this.activatedRoute.snapshot.params.userId));
+    }
   }
 
   ngOnDestroy(): void {

@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   currentUser: User;
 
-  authenticationStoreSubscription: Subscription;
+  private authenticationStoreSubscription: Subscription;
 
   constructor(private store: Store<fromApp.AppState>) {
   }

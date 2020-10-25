@@ -18,13 +18,15 @@ export interface State {
   isAuthenticating: boolean;
   userAuth: UserAuth;
   user: User;
+  isAutoLoginCompleted: boolean;
 }
 
 const initialState: State = {
   errorMessage: null,
   isAuthenticating: false,
   userAuth: null,
-  user: null
+  user: null,
+  isAutoLoginCompleted: false
 };
 
 export function authenticationReducer(state = initialState, action: AuthenticationActions): State {
@@ -51,7 +53,8 @@ export function authenticationReducer(state = initialState, action: Authenticati
         ...state,
         user: action.user,
         isAuthenticating: false,
-        errorMessage: null
+        errorMessage: null,
+        isAutoLoginCompleted: true
       };
     case AUTHENTICATION_FAILED:
       return {
@@ -79,7 +82,7 @@ export function authenticationReducer(state = initialState, action: Authenticati
     case AUTO_LOGIN_SUCCESS:
       return {
         ...state,
-        userAuth: action.userAuth,
+        userAuth: action.userAuth
       };
     case RESET_AUTHENTICATION:
       return {
@@ -87,7 +90,8 @@ export function authenticationReducer(state = initialState, action: Authenticati
         user: null,
         userAuth: null,
         errorMessage: null,
-        isAuthenticating: false
+        isAuthenticating: false,
+        isAutoLoginCompleted: true
       };
     default:
       return state;

@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   years = YEARS;
   daysInMonth = [];
 
-  authenticationStoreSubscription: Subscription;
+  private authenticationStoreSubscription: Subscription;
 
   constructor(private store: Store<fromApp.AppState>,
               private authenticationService: AuthenticationService,
@@ -54,6 +54,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   onClose(): void {
+    if (this.isAuthenticating) {
+      return;
+    }
+
     this.authenticationService.registerModalCloseEvent.emit();
   }
 

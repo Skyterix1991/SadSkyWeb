@@ -27,8 +27,8 @@ export class ProfileInvitesSentInvitesComponent implements OnInit, OnDestroy {
   private currentUser: User;
   sentInvites: User[];
 
-  profileStoreSubscription: Subscription;
-  authenticationStoreSubscription: Subscription;
+  private profileStoreSubscription: Subscription;
+  private authenticationStoreSubscription: Subscription;
   faPlus = faPlus;
 
   constructor(private store: Store<fromApp.AppState>) {
@@ -64,6 +64,13 @@ export class ProfileInvitesSentInvitesComponent implements OnInit, OnDestroy {
     }
 
     const friendId = this.profileSentInvitesForm.controls.friendId.value;
+
+    // Check if current user id is same as friend id
+    if (this.currentUser.userId === friendId) {
+      this.profileSentInvitesForm.controls.friendId.setErrors({incorrect: true});
+
+      return;
+    }
 
     this.store.dispatch(new SendUserInviteStart(this.currentUser.userId, friendId));
   }

@@ -1,22 +1,23 @@
 <div class="offset"></div>
 
-<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light shadow-lg p-0">
+<nav class="navbar navbar-expand-xl navbar-light fixed-top bg-light shadow-lg p-0">
   <button (click)="onMenuToggle()" class="navbar-toggler text-black-50 ml-auto" type="button">
     <fa-icon [icon]="menuToggleIcon" size="lg"></fa-icon>
   </button>
 
-  <div class="collapse navbar-collapse pl-3" #menuRef>
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a (click)="selectUser(currentUser)" routerLinkActive="active"
-           class="nav-link text-gray h5 pointer m-0 font-weight-normal">{{ currentUser.firstName + ' ' + currentUser.lastName | titlecase}}</a>
-      </li>
-      <li *ngFor="let user of userFriendsTo" class="nav-item">
-        <a (click)="selectUser(user)" routerLinkActive="active"
-           class="nav-link text-gray h5 pointer m-0 font-weight-normal">{{ user.firstName + ' ' + user.lastName | titlecase}}</a>
+  <div class="collapse navbar-collapse" #menuRef>
+    <ul class="navbar-nav pl-1">
+      <li class="nav-item" [formGroup]="usersForm">
+        <select (change)="selectUser()" class="custom-select" formControlName="users">
+          <option
+            [value]="currentUser.userId">{{ currentUser.firstName + ' ' + currentUser.lastName | titlecase}}</option>
+
+          <option *ngFor="let user of userFriendsTo"
+                  [value]="user.userId">{{ user.firstName + ' ' + user.lastName | titlecase}}</option>
+        </select>
       </li>
     </ul>
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto pl-3">
       <li appDropdown class="nav-item dropdown">
         <a class="nav-link dropdown-toggle pointer">
           {{ currentUser.firstName }}

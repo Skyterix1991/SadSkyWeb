@@ -17,7 +17,9 @@ import {
   REPLACE_PREDICTION_DAY_EMOTIONS_START,
   REPLACE_PREDICTION_DAY_EMOTIONS_SUCCESS,
   SELECT_PREDICTION,
-  SELECT_USER
+  SELECT_USER_FAIL,
+  SELECT_USER_START,
+  SELECT_USER_SUCCESS
 } from './dashboard.actions';
 import {Prediction} from '../../shared/model/prediction.model';
 import {User} from '../../shared/model/user.model';
@@ -26,9 +28,11 @@ export interface State {
   predictionErrorMessage: string;
   predictionsErrorMessage: string;
   replaceEmotionsErrorMessage: string;
+  userErrorMessage: string;
   dayPartEmotionsEditErrorMessage: string;
   arePredictionsFetching: boolean;
   isPredictionFetching: boolean;
+  isUserFetching: boolean;
   predictions: Prediction[];
   selectedPrediction: Prediction;
   selectedUser: User;
@@ -40,8 +44,10 @@ const initialState: State = {
   predictionsErrorMessage: null,
   replaceEmotionsErrorMessage: null,
   dayPartEmotionsEditErrorMessage: null,
+  userErrorMessage: null,
   arePredictionsFetching: false,
   isPredictionFetching: false,
+  isUserFetching: false,
   predictions: [],
   selectedPrediction: null,
   selectedUser: null,
@@ -102,10 +108,22 @@ export function dashboardReducer(state = initialState, action: DashboardActions)
         isPredictionFetching: true,
         selectedPrediction: null
       };
-    case SELECT_USER:
+    case SELECT_USER_FAIL:
       return {
         ...state,
-        selectedUser: action.user
+        userErrorMessage: action.errorMessage,
+        isUserFetching: false
+      };
+    case SELECT_USER_START:
+      return {
+        ...state,
+        isUserFetching: true
+      };
+    case SELECT_USER_SUCCESS:
+      return {
+        ...state,
+        selectedUser: action.user,
+        isUserFetching: false
       };
     case SELECT_PREDICTION:
       return {

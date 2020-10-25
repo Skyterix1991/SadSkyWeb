@@ -18,13 +18,37 @@ export const GENERATE_PREDICTION_RESULT_START = '[Dashboard] Generate prediction
 export const GENERATE_PREDICTION_RESULT_FAIL = '[Dashboard] Generate prediction result fail';
 export const GENERATE_PREDICTION_RESULT_SUCCESS = '[Dashboard] Generate prediction result success';
 
-export const SELECT_USER = '[Dashboard] Select user';
+export const SELECT_USER_START = '[Dashboard] Select user start';
+export const SELECT_USER_FAIL = '[Dashboard] Select user fail';
+export const SELECT_USER_SUCCESS = '[Dashboard] Select user success';
+
 export const SELECT_PREDICTION = '[Dashboard] Select prediction';
 export const CLEAR_SELECTED_PREDICTION = '[Dashboard] Clear selected prediction';
 
 export const GET_USER_FRIENDS_TO_START = '[Dashboard] Get user friends to start';
 export const GET_USER_FRIENDS_TO_SUCCESS = '[Dashboard] Get user friends to success';
 export const GET_USER_FRIENDS_TO_FAIL = '[Dashboard] Get user friends to fail';
+
+export class SelectUserFail implements Action {
+  readonly type = SELECT_USER_FAIL;
+
+  constructor(public errorMessage: string) {
+  }
+}
+
+export class SelectUserStart implements Action {
+  readonly type = SELECT_USER_START;
+
+  constructor(public userId: string) {
+  }
+}
+
+export class SelectUserSuccess implements Action {
+  readonly type = SELECT_USER_SUCCESS;
+
+  constructor(public user: User) {
+  }
+}
 
 export class GetUserFriendsToFail implements Action {
   readonly type = GET_USER_FRIENDS_TO_FAIL;
@@ -111,13 +135,6 @@ export class GetUserPredictionFail implements Action {
   }
 }
 
-export class SelectUser implements Action {
-  readonly type = SELECT_USER;
-
-  constructor(public user: User) {
-  }
-}
-
 export class SelectPrediction implements Action {
   readonly type = SELECT_PREDICTION;
 
@@ -168,7 +185,9 @@ export type DashboardActions =
   GeneratePredictionResultFail |
   GeneratePredictionResultStart |
   GeneratePredictionResultSuccess |
-  SelectUser |
+  SelectUserStart |
+  SelectUserFail |
+  SelectUserSuccess |
   GetUserFriendsToStart |
   GetUserFriendsToFail |
   GetUserFriendsToSuccess;

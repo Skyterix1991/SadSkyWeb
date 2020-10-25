@@ -14,17 +14,17 @@ const appRoutes: Routes = [
       },
       {
         path: 'main',
-        canActivate: [NoAuthGuard],
+        canLoad: [NoAuthGuard],
         loadChildren: () => import('./main-page/main-page.module').then(m => m.MainPageModule)
       },
       {
         path: 'profile',
-        canActivate: [AuthGuard],
+        canLoad: [AuthGuard],
         loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
       },
       {
         path: 'dashboard',
-        canActivate: [AuthGuard],
+        canLoad: [AuthGuard],
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {

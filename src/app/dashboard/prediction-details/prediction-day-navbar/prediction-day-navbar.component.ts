@@ -19,7 +19,9 @@ export class PredictionDayNavbarComponent implements OnInit, OnDestroy {
 
   menuToggleIcon = faBars;
 
-  predictionStoreSubscription: Subscription;
+  currentDayNumber: number;
+
+  private predictionStoreSubscription: Subscription;
 
   private selectedPrediction: Prediction;
   private isMenuOpened = true;
@@ -36,6 +38,8 @@ export class PredictionDayNavbarComponent implements OnInit, OnDestroy {
         this.days = Array.from({length: this.selectedPrediction.days.length}, (_, i) => i + 1);
       }
     });
+
+    this.updateCurrentDayNumber();
   }
 
   ngOnDestroy(): void {
@@ -52,5 +56,23 @@ export class PredictionDayNavbarComponent implements OnInit, OnDestroy {
     }
 
     this.isMenuOpened = !this.isMenuOpened;
+  }
+
+  private updateCurrentDayNumber(): void {
+    const expireDate = new Date(
+      this.selectedPrediction.expireDate[0],
+      this.selectedPrediction.expireDate[1] - 1,
+      this.selectedPrediction.expireDate[2] + 1
+    );
+
+    const currentDate = new Date();
+    currentDate.setHours(0);
+    currentDate.setMinutes(0);
+    currentDate.setSeconds(0);
+    currentDate.setMilliseconds(0);
+
+    const oneDay = 24 * 60 * 60 * 1000;
+
+    this.currentDayNumber = 7 - Math.round(Math.abs(((currentDate as any) - (expireDate as any)) / oneDay));
   }
 }

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {faUser} from '@fortawesome/free-solid-svg-icons/faUser';
+import {faEnvelope} from '@fortawesome/free-solid-svg-icons/faEnvelope';
+import {faClipboard} from '@fortawesome/free-solid-svg-icons/faClipboard';
 
 @Component({
   selector: 'app-advantages',
@@ -8,7 +9,8 @@ import {faUser} from '@fortawesome/free-solid-svg-icons/faUser';
 })
 export class AdvantagesComponent implements OnInit {
 
-  faUser = faUser;
+  faClipboard = faClipboard;
+  faEnvelope = faEnvelope;
 
   constructor() {
   }

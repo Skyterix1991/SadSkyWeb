@@ -19,12 +19,6 @@
   z-index: 1050;
 }
 
-
-.navbar-toggler {
-  outline: none;
-  border: none;
-}
-
 .navbar-collapse {
   width: 100vw;
   z-index: 1000;
@@ -33,4 +27,9 @@
 
 .offset {
   margin-top: 70px;
+}
+
+.nav-item .custom-select {
+  margin: 5px;
+  width: 200px;
 }

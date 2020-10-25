@@ -34,3 +34,11 @@
   outline: none;
   border: none;
 }
+
+.active .current {
+  color: #fff !important;
+}
+
+.current {
+  color: #000 !important;
+}

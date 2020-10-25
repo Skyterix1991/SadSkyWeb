@@ -5,6 +5,7 @@ export class Prediction {
   predictionId: string;
   owner: User;
   days: Day[];
+  canceled: boolean;
   depressionResult: string;
   anxietyResult: string;
   expireDays: number;

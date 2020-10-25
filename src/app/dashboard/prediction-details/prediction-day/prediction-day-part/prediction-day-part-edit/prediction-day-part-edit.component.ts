@@ -54,12 +54,18 @@ export class PredictionDayPartEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.predictionStoreSubscription.unsubscribe();
+    if (!!this.predictionStoreSubscription) {
+      this.predictionStoreSubscription.unsubscribe();
+    }
 
     this.document.body.classList.remove('modal-open');
   }
 
   onClose(): void {
+    if (this.isFetching) {
+      return;
+    }
+
     this.predictionDayPart.predictionDayPartEditModalCloseEvent.emit();
 
     this.store.dispatch(new GetUserPredictionsStart(this.selectedPrediction.owner.userId));

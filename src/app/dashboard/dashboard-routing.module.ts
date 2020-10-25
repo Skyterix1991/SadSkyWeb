@@ -8,6 +8,51 @@ import {PredictionDayComponent} from './prediction-details/prediction-day/predic
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
+    redirectTo: '/dashboard/'
+  },
+  {
+    path: ':userId',
+    component: DashboardComponent,
+    children: [
+      {
+        path: 'predictions',
+        pathMatch: 'full',
+        redirectTo: ''
+      },
+      {
+        path: 'predictions/:predictionId',
+        component: PredictionDetailsComponent,
+        children: [
+          {
+            path: '',
+            redirectTo: 'day/1'
+          },
+          {
+            path: 'day',
+            redirectTo: 'day/1'
+          },
+          {
+            path: 'day/:dayNumber',
+            component: PredictionDayComponent
+          },
+          {
+            path: '**',
+            redirectTo: 'day/1'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    path: '**',
+    redirectTo: ''
+  }
+];
+
+/*const routes: Routes = [
+  {
+    path: '',
     component: DashboardComponent,
     children: [
       {
@@ -38,11 +83,11 @@ const routes: Routes = [
       },
       {
         path: '**',
-        redirectTo: ''
+        redirectTo: '/dashboard/'
       }
     ]
   }
-];
+];*/
 
 @NgModule({
   declarations: [],

@@ -32,7 +32,11 @@ import {
   ReplacePredictionDayEmotionsFail,
   ReplacePredictionDayEmotionsStart,
   ReplacePredictionDayEmotionsSuccess,
-  SelectPrediction
+  SELECT_USER_START,
+  SelectPrediction,
+  SelectUserFail,
+  SelectUserStart,
+  SelectUserSuccess
 } from './dashboard.actions';
 import {Prediction} from '../../shared/model/prediction.model';
 import {PredictionResultService} from '../prediction-details/prediction-result.service';
@@ -54,6 +58,21 @@ export class DashboardEffects {
             default:
               return of(new GetUserFriendsToFail('Coś poszło nie tak. Spróbuj ponownie później.'));
           }
+        })
+      );
+    })
+  );
+
+  @Effect()
+  selectUserStart = this.actions$.pipe(
+    ofType(SELECT_USER_START),
+    switchMap((state: SelectUserStart) => {
+      return this.httpClient.get<User>(GET_USER_URL + state.userId).pipe(
+        map(response => {
+          return new SelectUserSuccess(response);
+        }),
+        catchError(__ => {
+          return of(new SelectUserFail('Nie udało się pobrać informacji o użytkowniku. Spróbuj ponownie później.'));
         })
       );
     })

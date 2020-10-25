@@ -5,9 +5,10 @@
 
   <div class="collapse navbar-collapse" #menuRef>
     <ul class="navbar-nav">
-      <li *ngFor="let day of days" [routerLink]="['day', day]" routerLinkActive="active"
+      <li *ngFor="let day of days; let index = index" [routerLink]="['day', day]" routerLinkActive="active"
           class="nav-item text-center">
-        <a class="nav-link text-gray h5 pointer m-0 font-weight-normal pl-4 pr-4">Dzień {{ day }}</a>
+        <a class="nav-link text-gray h5 pointer m-0 font-weight-normal pl-4 pr-4"
+           [ngClass]="(currentDayNumber == index) ? 'current' : ''">Dzień {{ day }}</a>
       </li>
     </ul>
   </div>

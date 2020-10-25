@@ -29,9 +29,9 @@ export class PredictionResultComponent implements OnInit, OnDestroy {
 
   private currentUser: User;
 
-  authenticationStoreSubscription: Subscription;
-  predictionStoreSubscription: Subscription;
-  predictionResultGeneratedSubscription: Subscription;
+  private authenticationStoreSubscription: Subscription;
+  private predictionStoreSubscription: Subscription;
+  private predictionResultGeneratedSubscription: Subscription;
 
   constructor(private store: Store<fromApp.AppState>,
               private predictionResultService: PredictionResultService) {
@@ -70,6 +70,11 @@ export class PredictionResultComponent implements OnInit, OnDestroy {
   }
 
   canGeneratePredictionResult(): boolean {
+    // If prediction is cancelled
+    if (this.selectedPrediction.canceled) {
+      return false;
+    }
+
     const currentTime = new Date();
 
     const expireDays = this.selectedPrediction.expireDays;
@@ -77,7 +82,11 @@ export class PredictionResultComponent implements OnInit, OnDestroy {
     const expireDate = new Date(
       this.selectedPrediction.expireDate[0],
       this.selectedPrediction.expireDate[1] - 1,
-      this.selectedPrediction.expireDate[2]
+      this.selectedPrediction.expireDate[2],
+      this.currentUser.wakeHour + (DAY_PART_HOURS * 3),
+      0,
+      0,
+      0
     );
 
     // Is prediction expired

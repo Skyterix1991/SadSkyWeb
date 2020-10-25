@@ -1,6 +1,6 @@
 <section class="d-block">
   <!-- Sent invites -->
-  <h2 class="h2 pt-3">Wysłane zaproszenia</h2>
+  <h2 class="h2 pt-3">Wysłane prośby o udostępnienie</h2>
   <p class="font-weight-light mt-4" *ngIf="sentInvites.length == 0">Brak</p>
   <form [formGroup]="profileSentInvitesForm" class="text-left d-inline-block mt-2">
     <div class="form-group">
@@ -20,7 +20,7 @@
       <input type="text" class="form-control mt-3" formControlName="friendId" placeholder="Identyfikator użytkownika"/>
 
       <button (click)="onSentUserInvite()"
-              [disabled]="!profileSentInvitesForm.valid || isFetching || !profileSentInvitesForm.touched"
+              [disabled]="!profileSentInvitesForm.valid || isFetching"
               class="btn btn-primary btn-lg btn-block p-2 mt-2" type="submit">
         <span *ngIf="!isFetching">Wyślij</span>
         <fa-icon *ngIf="isFetching" [fixedWidth]="true" [icon]="faCircleNotch" class="text-white"

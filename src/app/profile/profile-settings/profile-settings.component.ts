@@ -28,8 +28,8 @@ export class ProfileSettingsComponent implements OnInit, OnDestroy {
   years = YEARS;
   daysInMonth = [];
 
-  authenticationStoreSubscription: Subscription;
-  profileStoreSubscription: Subscription;
+  private authenticationStoreSubscription: Subscription;
+  private profileStoreSubscription: Subscription;
 
   constructor(private store: Store<fromApp.AppState>) {
   }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Prediction} from '../../../shared/model/prediction.model';
 import {MONTHS} from '../../../shared/config/date.constants';
 import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
@@ -8,13 +8,14 @@ import {Subscription} from 'rxjs';
 import {SelectPrediction} from '../../store/dashboard.actions';
 import {Icon} from '@fortawesome/fontawesome-svg-core';
 import {faClipboardList} from '@fortawesome/free-solid-svg-icons/faClipboardList';
+import {faTimes} from '@fortawesome/free-solid-svg-icons/faTimes';
 
 @Component({
   selector: 'app-prediction-item',
   templateUrl: './prediction-item.component.html',
   styleUrls: ['./prediction-item.component.css']
 })
-export class PredictionItemComponent implements OnInit {
+export class PredictionItemComponent implements OnInit, OnDestroy {
 
   predictionIcon: Icon;
 
@@ -27,7 +28,7 @@ export class PredictionItemComponent implements OnInit {
 
   createDate: Date;
 
-  predictionStoreSubscription: Subscription;
+  private predictionStoreSubscription: Subscription;
 
   constructor(private store: Store<fromApp.AppState>) {
   }
@@ -54,6 +55,17 @@ export class PredictionItemComponent implements OnInit {
   }
 
   getPredictionIcon(): any {
-    return this.isPredictionExpired() ? faClipboardList : faClock;
+    if (this.isPredictionExpired()) {
+      return faClipboardList;
+    } else if (this.prediction.canceled) {
+      return faTimes;
+    } else {
+      return faClock;
+    }
+
+  }
+
+  ngOnDestroy(): void {
+    this.predictionStoreSubscription.unsubscribe();
   }
 }

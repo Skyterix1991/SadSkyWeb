@@ -23,8 +23,8 @@ export class ProfileFriendsFriendsComponent implements OnInit, OnDestroy {
   private currentUser: User;
   friends: User[];
 
-  profileStoreSubscription: Subscription;
-  authenticationStoreSubscription: Subscription;
+  private profileStoreSubscription: Subscription;
+  private authenticationStoreSubscription: Subscription;
 
   constructor(private store: Store<fromApp.AppState>) {
   }

@@ -12,7 +12,7 @@ export class ProfileFriendsComponent implements OnInit, OnDestroy {
 
   errorMessage: string;
 
-  profileStoreSubscription: Subscription;
+  private profileStoreSubscription: Subscription;
 
   constructor(private store: Store<fromApp.AppState>) {
   }

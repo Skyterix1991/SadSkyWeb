@@ -28,7 +28,7 @@ export class PredictionResultViewComponent implements OnInit, OnDestroy {
 
   selectedPrediction: Prediction;
 
-  predictionStoreSubscription: Subscription;
+  private predictionStoreSubscription: Subscription;
 
   constructor(private store: Store<fromApp.AppState>,
               private predictionResultService: PredictionResultService,

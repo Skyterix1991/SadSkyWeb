@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   errorMessage: string;
   isAuthenticating: boolean;
 
-  authenticationStoreSubscription: Subscription;
+  private authenticationStoreSubscription: Subscription;
 
   constructor(private store: Store<fromApp.AppState>,
               private authenticationService: AuthenticationService,
@@ -50,6 +50,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onClose(): void {
+    if (this.isAuthenticating) {
+      return;
+    }
+
     this.authenticationService.loginModalCloseEvent.emit();
   }
 

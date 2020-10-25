@@ -19,22 +19,23 @@ export class PredictionDetailsComponent implements OnInit, OnDestroy {
 
   isFetching: boolean;
   selectedPrediction: Prediction;
-
-  predictionStoreSubscription: Subscription;
-
   private selectedUser: User;
+
+  private predictionStoreSubscription: Subscription;
 
   constructor(private store: Store<fromApp.AppState>, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.predictionStoreSubscription = this.store.select('dashboard').subscribe(state => {
+      this.selectedUser = state.selectedUser;
       this.selectedPrediction = state.selectedPrediction;
       this.isFetching = state.isPredictionFetching;
-      this.selectedUser = state.selectedUser;
     });
 
-    this.store.dispatch(new GetUserPredictionStart(this.selectedUser.userId, this.activatedRoute.snapshot.params.predictionId));
+    if (!!this.activatedRoute.snapshot.params.predictionId) {
+      this.store.dispatch(new GetUserPredictionStart(this.selectedUser.userId, this.activatedRoute.snapshot.params.predictionId));
+    }
   }
 
   ngOnDestroy(): void {

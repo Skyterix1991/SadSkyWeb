@@ -24,8 +24,8 @@ export class ProfilePrivacyComponent implements OnInit, OnDestroy {
 
   user: User;
 
-  authenticationStoreSubscription: Subscription;
-  profileStoreSubscription: Subscription;
+  private authenticationStoreSubscription: Subscription;
+  private profileStoreSubscription: Subscription;
 
   constructor(private store: Store<fromApp.AppState>) {
   }

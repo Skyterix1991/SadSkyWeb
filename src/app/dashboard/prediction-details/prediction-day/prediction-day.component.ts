@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import * as fromApp from '../../../store/app.reducer';
 import {ActivatedRoute} from '@angular/router';
@@ -10,13 +10,13 @@ import {Prediction} from '../../../shared/model/prediction.model';
   templateUrl: './prediction-day.component.html',
   styleUrls: ['./prediction-day.component.css']
 })
-export class PredictionDayComponent implements OnInit {
+export class PredictionDayComponent implements OnInit, OnDestroy {
 
   selectedPrediction: Prediction;
 
   dayNumber: number;
 
-  predictionStoreSubscription: Subscription;
+  private predictionStoreSubscription: Subscription;
 
   constructor(private store: Store<fromApp.AppState>,
               private activatedRoute: ActivatedRoute) {
@@ -29,6 +29,10 @@ export class PredictionDayComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.dayNumber = params.dayNumber;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.predictionStoreSubscription.unsubscribe();
   }
 
 }
