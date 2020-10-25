@@ -31,15 +31,17 @@ export class PredictionDayNavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.predictionStoreSubscription = this.store.select('dashboard').subscribe(state => {
-      this.selectedPrediction = state.selectedPrediction;
+      if ((!this.selectedPrediction && !!state.selectedPrediction) || state.selectedPrediction !== this.selectedPrediction) {
+        this.selectedPrediction = state.selectedPrediction;
+
+        this.updateCurrentDayNumber();
+      }
 
       if (!!this.selectedPrediction) {
         // Fill array 1... N...
         this.days = Array.from({length: this.selectedPrediction.days.length}, (_, i) => i + 1);
       }
     });
-
-    this.updateCurrentDayNumber();
   }
 
   ngOnDestroy(): void {
@@ -72,6 +74,13 @@ export class PredictionDayNavbarComponent implements OnInit, OnDestroy {
     currentDate.setMilliseconds(0);
 
     const oneDay = 24 * 60 * 60 * 1000;
+
+    // If is expired don't highlight any
+    if (currentDate.getTime() > expireDate.getTime()) {
+      this.currentDayNumber = -1;
+
+      return;
+    }
 
     this.currentDayNumber = 7 - Math.round(Math.abs(((currentDate as any) - (expireDate as any)) / oneDay));
   }

@@ -8,7 +8,8 @@
     <fa-icon *ngIf="!!selectedPrediction.depressionResult" (click)="onViewResult()" class="ml-3 text-blue pointer view"
              [icon]="faClipboard"></fa-icon>
     <button
-      *ngIf="!selectedPrediction.depressionResult && canGeneratePrediction && isSelectedUserCurrentUser && !!selectedPrediction.canceled"
+      *ngIf="!selectedPrediction.depressionResult && canGeneratePrediction
+      && isSelectedUserCurrentUser && !selectedPrediction.canceled"
       (click)="onResultGenerate()"
       class="btn btn-primary btn-lg btn-block p-3 mt-5" type="submit">Generuj rezultat
     </button>
